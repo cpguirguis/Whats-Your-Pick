@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HOW TO PLAY · WHAT'S YOUR PICK</title>
+<meta name="description" content="Learn how What's Your Pick works in 60 seconds. Pick. Score. Crown.">
+<link rel="icon" type="image/png" href="/assets/wyp-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0A0C10;
+    --surface: #131820;
+    --surface-2: #1B2230;
+    --gold: #FACC15;
+    --gold-deep: #CA9A04;
+    --green: #4ADE80;
+    --green-deep: #16A34A;
+    --green-bright: #84F7AC;
+    --red: #EF4444;
+    --text: #F5F5F0;
+    --text-muted: #8993A4;
+    --text-dim: #4F5764;
+    --border: rgba(255, 255, 255, 0.07);
+    --border-strong: rgba(255, 255, 255, 0.14);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Archivo', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 500;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.5;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(
+        135deg,
+        transparent 0px,
+        transparent 2px,
+        rgba(255, 255, 255, 0.012) 2px,
+        rgba(255, 255, 255, 0.012) 3px
+      );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 90% 10%, rgba(250, 204, 21, 0.05), transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  nav, main, section, footer { position: relative; z-index: 1; }
+
+  /* NAV */
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 48px;
+    max-width: 1500px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .nav-logo img { height: 38px; width: auto; }
+
+  .nav-logo span {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 14px;
+    letter-spacing: 2.5px;
+    color: var(--text);
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: 'Archivo', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a.active { color: var(--text); }
+
+  /* HERO */
+  .page-hero {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 80px 48px 60px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 60px;
+    border-bottom: 2px solid var(--border-strong);
+  }
+
+  .hero-left {
+    /* */
+  }
+
+  .page-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .page-eyebrow::before {
+    content: '';
+    width: 36px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .page-title {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(72px, 12vw, 200px);
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+
+  .page-title .accent { color: var(--gold); }
+
+  .page-sub {
+    color: var(--text-muted);
+    font-size: 16px;
+    max-width: 320px;
+    font-weight: 500;
+    line-height: 1.55;
+    padding-bottom: 12px;
+  }
+
+  .page-sub b {
+    color: var(--text);
+    font-weight: 700;
+  }
+
+  /* TLDR Strip — like a sports magazine kicker */
+  .tldr-strip {
+    background: var(--gold);
+    color: #000;
+    border-bottom: 2px solid #000;
+  }
+
+  .tldr-inner {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 22px 48px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+
+  .tldr-label {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    flex-shrink: 0;
+    border-right: 2px solid #000;
+    padding-right: 28px;
+  }
+
+  .tldr-text {
+    font-family: 'Archivo', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+    flex: 1;
+    min-width: 280px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .tldr-text b {
+    background: #000;
+    color: var(--gold);
+    padding: 2px 8px;
+    margin: 0 2px;
+    font-family: 'Archivo Black', sans-serif;
+  }
+
+  /* STEPS — magazine spread */
+  .steps {
+    max-width: 1500px;
+    margin: 0 auto;
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid var(--border);
+    min-height: 540px;
+  }
+
+  .step.reverse .step-content { order: 2; border-right: none; border-left: 1px solid var(--border); }
+  .step.reverse .step-visual { order: 1; }
+
+  .step-content {
+    padding: 80px 60px;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .step-marker {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .step-marker-num {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 120px;
+    line-height: 0.85;
+    color: var(--gold);
+    letter-spacing: -0.06em;
+  }
+
+  .step-marker-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    border-left: 2px solid var(--gold);
+    padding-left: 14px;
+  }
+
+  .step-title {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(40px, 4.5vw, 64px);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .step-title .accent { color: var(--gold); }
+
+  .step-desc {
+    color: var(--text-muted);
+    font-size: 16px;
+    line-height: 1.65;
+    margin-bottom: 18px;
+    max-width: 460px;
+    font-weight: 500;
+  }
+
+  .step-desc b {
+    color: var(--text);
+    font-weight: 700;
+  }
+
+  .step-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+    padding: 8px 14px;
+    background: rgba(74, 222, 128, 0.08);
+    border: 1px solid rgba(74, 222, 128, 0.3);
+    border-radius: 4px;
+    color: var(--green);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    align-self: flex-start;
+  }
+
+  .step-pill.gold {
+    background: rgba(250, 204, 21, 0.08);
+    border-color: rgba(250, 204, 21, 0.35);
+    color: var(--gold);
+  }
+
+  /* VISUAL panels */
+  .step-visual {
+    padding: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--surface) 0%, var(--bg) 100%);
+  }
+
+  .step-visual::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+  }
+
+  /* Step 1 — Sign in card */
+  .signin-card {
+    background: var(--bg);
+    border: 1px solid var(--border-strong);
+    border-radius: 14px;
+    padding: 32px 24px;
+    width: 100%;
+    max-width: 320px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  }
+
+  .signin-stamp {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    background: var(--green);
+    color: #000;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transform: rotate(8deg);
+    text-transform: uppercase;
+  }
+
+  .signin-logo {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 16px;
+    display: block;
+  }
+
+  .signin-name {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-align: center;
+    color: var(--text);
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+
+  .signin-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    font-family: 'Archivo', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  .signin-btn.light { background: #F2F2EE; color: #0E1117; }
+  .signin-btn.dark { background: #1B2230; color: #F2F2EE; }
+  .signin-btn.email { color: var(--text-muted); text-align: center; background: transparent; font-size: 11px; padding: 8px; }
+
+  /* Step 2 — Group card stack */
+  .group-stack {
+    width: 100%;
+    max-width: 380px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .group-card {
+    background: var(--bg);
+    border: 1px solid var(--border-strong);
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .group-card-inner {
+    flex: 1;
+  }
+
+  .group-name {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    color: var(--text);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+
+  .group-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .group-rank {
+    background: rgba(74, 222, 128, 0.1);
+    color: var(--green);
+    border: 1px solid rgba(74, 222, 128, 0.3);
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+  }
+
+  .group-rank.gold {
+    background: rgba(250, 204, 21, 0.1);
+    color: var(--gold);
+    border-color: rgba(250, 204, 21, 0.3);
+  }
+
+  .group-cta {
+    background: var(--green);
+    color: #000;
+    border-radius: 8px;
+    padding: 14px;
+    text-align: center;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  /* Step 3 — Match prediction card */
+  .pred-card {
+    background: var(--bg);
+    border: 1px solid var(--border-strong);
+    border-radius: 14px;
+    padding: 24px;
+    width: 100%;
+    max-width: 340px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  }
+
+  .pred-header {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 16px;
+    letter-spacing: 1.5px;
+    text-align: center;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+  }
+
+  .pred-section {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin: 14px 0 8px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .pred-section b {
+    color: var(--green);
+    font-weight: 700;
+  }
+
+  .pred-row {
+    display: flex;
+    gap: 6px;
+  }
+
+  .pred-pick {
+    flex: 1;
+    padding: 10px;
+    background: var(--surface);
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    text-align: center;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .pred-pick.active {
+    background: rgba(74, 222, 128, 0.1);
+    border-color: var(--green);
+    color: var(--green);
+  }
+
+  .pred-lock {
+    background: var(--gold);
+    color: #000;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    margin-top: 14px;
+    text-transform: uppercase;
+  }
+
+  /* Step 4 — Leaderboard */
+  .lb-card {
+    background: var(--bg);
+    border: 1px solid var(--border-strong);
+    border-radius: 14px;
+    padding: 24px;
+    width: 100%;
+    max-width: 360px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  }
+
+  .lb-header {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    color: var(--text);
+    padding-bottom: 14px;
+    border-bottom: 1px dashed var(--border-strong);
+  }
+
+  .lb-row {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    background: var(--surface);
+    border-radius: 8px;
+    margin-bottom: 6px;
+    gap: 12px;
+  }
+
+  .lb-row.you {
+    background: rgba(74, 222, 128, 0.1);
+    border: 1px solid rgba(74, 222, 128, 0.3);
+  }
+
+  .lb-rank {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 13px;
+    color: var(--text-muted);
+    width: 18px;
+  }
+
+  .lb-name {
+    flex: 1;
+    font-family: 'Archivo', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .lb-row.you .lb-name { color: var(--green); }
+
+  .lb-pts {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .lb-row.you .lb-pts { color: var(--green); }
+
+  /* Step 5 — Crown */
+  .crown-card {
+    background: var(--bg);
+    border: 1px solid var(--border-strong);
+    border-radius: 14px;
+    padding: 28px 24px;
+    width: 100%;
+    max-width: 340px;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  }
+
+  .crown-card::before {
+    content: '👑';
+    position: absolute;
+    top: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 44px;
+  }
+
+  .crown-title {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 14px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 14px 0 20px;
+  }
+
+  .podium {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    margin: 16px 0;
+  }
+
+  .pod {
+    flex: 1;
+    border-radius: 6px;
+    padding: 12px 6px;
+    text-align: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+
+  .pod.first {
+    height: 110px;
+    background: rgba(250, 204, 21, 0.12);
+    border-color: var(--gold);
+  }
+
+  .pod.second { height: 80px; }
+  .pod.third { height: 60px; }
+
+  .pod-name {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 12px;
+    color: var(--text);
+    letter-spacing: 1px;
+  }
+
+  .pod.first .pod-name { color: var(--gold); }
+
+  .pod-pts {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-top: 6px;
+  }
+
+  .pod.first .pod-pts { color: var(--gold); }
+
+  .reckoning {
+    background: rgba(239, 68, 68, 0.06);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 14px;
+    text-align: left;
+  }
+
+  .reckoning-label {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 10px;
+    color: var(--red);
+    letter-spacing: 1.5px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+  }
+
+  .reckoning-body {
+    font-family: 'Archivo', sans-serif;
+    font-size: 11px;
+    color: var(--text);
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  /* SCORING SHEET */
+  .scoring {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 100px 48px;
+  }
+
+  .scoring-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 60px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .scoring-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border: 1px solid var(--border-strong);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .score-row {
+    background: var(--surface);
+    padding: 22px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    gap: 24px;
+    transition: background 0.2s;
+  }
+
+  .score-row:nth-child(2n) { border-right: none; }
+  .score-row:hover { background: var(--surface-2); }
+
+  .score-label {
+    font-family: 'Archivo', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    line-height: 1.3;
+    flex: 1;
+  }
+
+  .score-pts {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--green);
+    letter-spacing: -1px;
+    white-space: nowrap;
+  }
+
+  .score-pts.gold { color: var(--gold); }
+  .score-pts.red { color: var(--red); }
+
+  /* CTA BANNER */
+  .cta-banner-wrap {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 60px 48px 120px;
+  }
+
+  .cta-banner {
+    background: var(--text);
+    color: #000;
+    border-radius: 18px;
+    padding: 80px 56px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-banner::before {
+    content: 'KICK • OFF';
+    position: absolute;
+    top: -30px;
+    right: -40px;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 180px;
+    color: rgba(0, 0, 0, 0.05);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .cta-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 14px;
+    background: #000;
+    color: var(--green);
+    border-radius: 4px;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-title {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(48px, 7vw, 96px);
+    text-transform: uppercase;
+    letter-spacing: -0.04em;
+    line-height: 0.9;
+    margin-bottom: 22px;
+    position: relative;
+    z-index: 1;
+    color: #000;
+  }
+
+  .cta-sub {
+    color: #1a1a1a;
+    font-size: 17px;
+    margin-bottom: 36px;
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+    line-height: 1.5;
+  }
+
+  .cta-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 24px;
+    border-radius: 4px;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.2s, background 0.2s;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background: #000;
+    color: var(--gold);
+  }
+
+  .btn-primary:hover {
+    background: #1a1a1a;
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: #000;
+    border: 2px solid #000;
+  }
+
+  .btn-ghost:hover {
+    background: #000;
+    color: var(--text);
+  }
+
+  .btn-arrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  /* FOOTER */
+  .footer {
+    border-top: 1px solid var(--border);
+    background: #000;
+  }
+
+  .footer-inner {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 40px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .footer-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .footer-left img { height: 32px; opacity: 0.7; }
+
+  .footer-copy {
+    color: var(--text-dim);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: 'Archivo', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .nav { padding: 18px 24px; }
+    .nav-links { gap: 24px; }
+    .nav-logo span { display: none; }
+
+    .page-hero {
+      padding: 50px 24px 40px;
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .tldr-inner { padding: 22px 24px; }
+    .tldr-label { padding-right: 18px; }
+
+    .step,
+    .step.reverse {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+    .step.reverse .step-content { order: 1; border-left: none; }
+    .step.reverse .step-visual { order: 2; }
+    .step-content { padding: 50px 24px; border-right: none; }
+    .step-visual { padding: 50px 24px; }
+    .step-marker-num { font-size: 90px; }
+
+    .scoring { padding: 60px 24px; }
+    .scoring-grid { grid-template-columns: 1fr; }
+    .score-row { border-right: none; }
+
+    .cta-banner-wrap { padding: 40px 24px 80px; }
+    .cta-banner { padding: 60px 28px; }
+    .cta-banner::before { font-size: 110px; }
+
+    .scoring-head { flex-direction: column; align-items: flex-start; }
+
+    .footer-inner { padding: 30px 24px; flex-direction: column; text-align: center; }
+  }
+
+  @media (max-width: 600px) {
+    .page-title { font-size: 64px; }
+    .step-title { font-size: 36px; }
+    .score-label { font-size: 13px; }
+    .score-pts { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/assets/wyp-logo.png" alt="WHAT'S YOUR PICK">
+    <span>WHAT'S YOUR PICK</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/howtoplay" class="active">HOW TO PLAY</a></li>
+    <li><a href="/privacypolicy">PRIVACY</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="hero-left">
+      <div class="page-eyebrow">THE PLAYBOOK · 60-SECOND READ</div>
+      <h1 class="page-title">HOW TO<br><span class="accent">PLAY.</span></h1>
+    </div>
+    <p class="page-sub">Five plays. Once you've run them, the World Cup becomes <b>the most fun group chat of the summer.</b></p>
+  </section>
+
+  <!-- TLDR STRIP -->
+  <div class="tldr-strip">
+    <div class="tldr-inner">
+      <div class="tldr-label">TL;DR</div>
+      <div class="tldr-text">
+        <b>SIGN IN.</b> <b>JOIN A CREW.</b> <b>MAKE PICKS BEFORE KICKOFF.</b> <b>EARN POINTS.</b> <b>CROWN THE BALL KNOWER.</b>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEPS -->
+  <section class="steps">
+
+    <!-- STEP 1 -->
+    <div class="step">
+      <div class="step-content">
+        <div class="step-marker">
+          <div class="step-marker-num">01</div>
+          <div class="step-marker-label">SIGN IN<br>~10 SEC</div>
+        </div>
+        <h2 class="step-title">ONE TAP.<br>NO PASSWORD.</h2>
+        <p class="step-desc">Open WYP. Continue with Apple, Google, or email. No password to remember. Your name auto-pulls from your account.</p>
+        <p class="step-desc">If we know you, you go straight home. If you're new, give yourself a name your crew will recognize.</p>
+        <div class="step-pill">FASTEST ONBOARDING IN THE GAME</div>
+      </div>
+      <div class="step-visual">
+        <div class="signin-card">
+          <div class="signin-stamp">3 OPTIONS</div>
+          <img class="signin-logo" src="/assets/wyp-logo.png" alt="WYP">
+          <div class="signin-name">WHAT'S YOUR PICK</div>
+          <div class="signin-btn light">CONTINUE WITH APPLE</div>
+          <div class="signin-btn dark">CONTINUE WITH GOOGLE</div>
+          <div class="signin-btn email">USE EMAIL INSTEAD</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step reverse">
+      <div class="step-content">
+        <div class="step-marker">
+          <div class="step-marker-num">02</div>
+          <div class="step-marker-label">JOIN A CREW<br>PRIVATE</div>
+        </div>
+        <h2 class="step-title">JOIN<br>YOUR CREW.</h2>
+        <p class="step-desc">Create a group and share the join code, or punch in a friend's code to join theirs. Groups are <b>private</b> — only people with the code get in.</p>
+        <p class="step-desc">Join as many crews as you want. Office crew, fantasy league, family. Same picks, different leaderboards.</p>
+        <div class="step-pill">INVITE-ONLY · ZERO STRANGERS</div>
+      </div>
+      <div class="step-visual">
+        <div class="group-stack">
+          <div class="group-card">
+            <div class="group-card-inner">
+              <div class="group-name">THE OFFICE CREW</div>
+              <div class="group-meta">WC '26 · 8 MEMBERS</div>
+            </div>
+            <div class="group-rank">#3</div>
+          </div>
+          <div class="group-card">
+            <div class="group-card-inner">
+              <div class="group-name">SUNDAY LEAGUE</div>
+              <div class="group-meta">WC '26 · 12 MEMBERS</div>
+            </div>
+            <div class="group-rank gold">#1</div>
+          </div>
+          <div class="group-cta">+ CREATE GROUP</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step">
+      <div class="step-content">
+        <div class="step-marker">
+          <div class="step-marker-num">03</div>
+          <div class="step-marker-label">MAKE PICKS<br>BEFORE KICKOFF</div>
+        </div>
+        <h2 class="step-title">CALL EVERY<br>MATCH.</h2>
+        <p class="step-desc">Three layers of calls. <b>Group stage:</b> who advances. <b>Knockouts:</b> winner, first scorer, how it ends (90', extra time, pens). <b>Tournament:</b> golden boot and the champion.</p>
+        <p class="step-desc">Picks auto-save. Once the match kicks off, they're sealed — <b>no last-second hindsight.</b></p>
+        <div class="step-pill">AUTO-SAVES · NO LOCK BUTTON</div>
+      </div>
+      <div class="step-visual">
+        <div class="pred-card">
+          <div class="pred-header">FRA VS GER</div>
+          <div class="pred-section"><span>WINNER</span><b>+3</b></div>
+          <div class="pred-row">
+            <div class="pred-pick active">FRANCE</div>
+            <div class="pred-pick">GERMANY</div>
+          </div>
+          <div class="pred-section"><span>FIRST SCORER</span><b>+2</b></div>
+          <div class="pred-row">
+            <div class="pred-pick active">MBAPPÉ</div>
+            <div class="pred-pick">WIRTZ</div>
+          </div>
+          <div class="pred-section"><span>DECIDED BY</span><b>+2</b></div>
+          <div class="pred-row">
+            <div class="pred-pick active">90'</div>
+            <div class="pred-pick">ET</div>
+            <div class="pred-pick">PENS</div>
+          </div>
+          <div class="pred-lock">LOCKED · MAX +18 PTS</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step reverse">
+      <div class="step-content">
+        <div class="step-marker">
+          <div class="step-marker-num">04</div>
+          <div class="step-marker-label">SCORE POINTS<br>POST-WHISTLE</div>
+        </div>
+        <h2 class="step-title">EARN ON<br>EVERY CALL.</h2>
+        <p class="step-desc">Final whistle blows, the app grades your picks automatically. Points hit the leaderboard live.</p>
+        <p class="step-desc">Nail all four core calls in one match and you've <b>swept it</b> — bonus points and a permanent badge on your profile.</p>
+        <div class="step-pill gold">SWEEP = CROWN ↑</div>
+      </div>
+      <div class="step-visual">
+        <div class="lb-card">
+          <div class="lb-header">THE OFFICE CREW · TABLE</div>
+          <div class="lb-row">
+            <div class="lb-rank">1</div>
+            <div class="lb-name">SARAH</div>
+            <div class="lb-pts">+127</div>
+          </div>
+          <div class="lb-row">
+            <div class="lb-rank">2</div>
+            <div class="lb-name">JAMES</div>
+            <div class="lb-pts">+118</div>
+          </div>
+          <div class="lb-row you">
+            <div class="lb-rank">3</div>
+            <div class="lb-name">YOU</div>
+            <div class="lb-pts">+112</div>
+          </div>
+          <div class="lb-row">
+            <div class="lb-rank">4</div>
+            <div class="lb-name">MIKE</div>
+            <div class="lb-pts">+98</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="step">
+      <div class="step-content">
+        <div class="step-marker">
+          <div class="step-marker-num">05</div>
+          <div class="step-marker-label">FINAL WHISTLE<br>WORLD CUP</div>
+        </div>
+        <h2 class="step-title">CROWN THE<br><span class="accent">BALL KNOWER.</span></h2>
+        <p class="step-desc">When the final ends, whoever sits on top of the crew's table gets crowned. Permanent badge. Group-wide notification. <b>Four years of bragging rights.</b></p>
+        <p class="step-desc">Whoever finished last? They might owe the crew a coffee — or whatever stake your group agreed on in House Rules.</p>
+        <div class="step-pill gold">FINAL · CHAMPION'S TROPHY</div>
+      </div>
+      <div class="step-visual">
+        <div class="crown-card">
+          <div class="crown-title">SARAH IS BALL KNOWER</div>
+          <div class="podium">
+            <div class="pod second">
+              <div class="pod-name">JM</div>
+              <div class="pod-pts">2ND</div>
+            </div>
+            <div class="pod first">
+              <div class="pod-name">SR</div>
+              <div class="pod-pts">1ST</div>
+            </div>
+            <div class="pod third">
+              <div class="pod-name">CG</div>
+              <div class="pod-pts">3RD</div>
+            </div>
+          </div>
+          <div class="reckoning">
+            <div class="reckoning-label">THE RECKONING</div>
+            <div class="reckoning-body">PAUL FINISHED LAST · OWES THE CREW ONE KARAOKE NIGHT</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- SCORING SHEET -->
+  <section class="scoring">
+    <div class="scoring-head">
+      <div>
+        <div class="page-eyebrow">POINTS SHEET · NO BLACK BOX</div>
+        <h2 class="step-title" style="font-size: clamp(40px, 6vw, 80px);">EVERY CALL<br>HAS A <span class="accent">PRICE.</span></h2>
+      </div>
+      <p style="color: var(--text-muted); font-size: 14px; max-width: 280px; text-align: right; font-weight: 500;">
+        Transparent scoring. You know exactly what each pick is worth before you lock it in.
+      </p>
+    </div>
+
+    <div class="scoring-grid">
+      <div class="score-row">
+        <div class="score-label">RIGHT TEAM ADVANCES · GROUP STAGE</div>
+        <div class="score-pts">+2</div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">EXACT ORDER · GROUP STAGE</div>
+        <div class="score-pts">+1</div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">MATCH WINNER · KNOCKOUT</div>
+        <div class="score-pts">+3</div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">FIRST SCORER · KNOCKOUT</div>
+        <div class="score-pts">+2</div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">DECIDED BY · 90' / ET / PENS</div>
+        <div class="score-pts">+2</div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">RED CARD CALL · OPT-IN</div>
+        <div class="score-pts">+5</div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">RED CARD WRONG · OPT-IN</div>
+        <div class="score-pts red">−3</div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">TOURNAMENT CHAMPION</div>
+        <div class="score-pts gold">+10</div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">GOLDEN BOOT PICK</div>
+        <div class="score-pts gold">+10</div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">SWEEP · 4/4 IN ONE MATCH</div>
+        <div class="score-pts gold">+10</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner-wrap">
+    <div class="cta-banner">
+      <div class="cta-pill">⚽ READY · LET'S GO</div>
+      <h2 class="cta-title">YOU KNOW<br>THE PLAYS.</h2>
+      <p class="cta-sub">Round up your crew. Make your calls. May the best Ball Knower win.</p>
+      <div class="cta-row">
+        <a href="/" class="btn btn-ghost">← BACK TO HOME</a>
+        <a href="/privacypolicy" class="btn btn-primary">READ PRIVACY <span class="btn-arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <img src="/assets/wyp-logo.png" alt="WYP">
+      <div class="footer-copy">© 2026 · MADE IN MISSISSAUGA</div>
+    </div>
+    <ul class="footer-links">
+      <li><a href="/howtoplay">HOW TO PLAY</a></li>
+      <li><a href="/privacypolicy">PRIVACY</a></li>
+      <li><a href="mailto:cpguirguis@gmail.com">CONTACT</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
