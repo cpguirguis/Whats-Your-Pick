@@ -178,7 +178,7 @@
     text-decoration: none;
   }
 
-  .nav-logo img { height: 38px; width: auto; }
+  .nav-logo img { height: 54px; width: auto; }
 
   .nav-logo span {
     font-family: 'Archivo Black', sans-serif;
@@ -440,20 +440,17 @@
     height: 64px;
     border-radius: 12px;
     margin: 0 auto 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 22px;
-    letter-spacing: 1px;
-    color: #fff;
-    background: linear-gradient(135deg, #1E40AF 0%, #1E3A8A 100%);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+  }
+
+  .team-flag.fra {
+    background: linear-gradient(to right, #002654 33.33%, #FFFFFF 33.33%, #FFFFFF 66.67%, #ED2939 66.67%);
   }
 
   .team-flag.ger {
-    background: linear-gradient(180deg, #000 33%, #DC2626 33% 66%, #FBBF24 66%);
+    background: linear-gradient(to bottom, #000000 33.33%, #DD0000 33.33%, #DD0000 66.67%, #FFCE00 66.67%);
   }
 
   .team-name {
@@ -1062,12 +1059,12 @@
 
         <div class="match-card-teams">
           <div class="team">
-            <div class="team-flag">FRA</div>
+            <div class="team-flag fra"></div>
             <div class="team-name">FRANCE</div>
           </div>
           <div class="vs-divider">VS</div>
           <div class="team">
-            <div class="team-flag ger">GER</div>
+            <div class="team-flag ger"></div>
             <div class="team-name">GERMANY</div>
           </div>
         </div>
@@ -1077,8 +1074,12 @@
           <div class="pick-value"><span>FRANCE</span><span class="pick-value-check">✓</span></div>
         </div>
         <div class="pick-row">
-          <div class="pick-label"><span>FIRST SCORER</span><span class="pick-pts">+2</span></div>
+          <div class="pick-label"><span>SCORER · FRA</span><span class="pick-pts">+2</span></div>
           <div class="pick-value"><span>MBAPPÉ</span><span class="pick-value-check">✓</span></div>
+        </div>
+        <div class="pick-row">
+          <div class="pick-label"><span>SCORER · GER</span><span class="pick-pts">+2</span></div>
+          <div class="pick-value"><span>WIRTZ</span><span class="pick-value-check">✓</span></div>
         </div>
         <div class="pick-row">
           <div class="pick-label"><span>DECIDED BY</span><span class="pick-pts">+2</span></div>
@@ -1193,7 +1194,7 @@
         <div class="score-tile-val">+3</div>
       </div>
       <div class="score-tile">
-        <div class="score-tile-label">FIRST SCORER</div>
+        <div class="score-tile-label">SCORER</div>
         <div class="score-tile-val">+2</div>
       </div>
       <div class="score-tile">
