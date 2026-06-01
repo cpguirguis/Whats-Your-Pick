@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ · WHAT'S YOUR PICK?</title>
+<meta name="description" content="Answers to common questions about What's Your Pick? — picks, groups, scoring, the Pundit, and House Rules.">
+<link rel="icon" type="image/png" href="/assets/wyp-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0A0C10;
+    --surface: #131820;
+    --surface-2: #1B2230;
+    --gold: #FACC15;
+    --gold-deep: #CA9A04;
+    --green: #4ADE80;
+    --green-deep: #16A34A;
+    --green-bright: #84F7AC;
+    --red: #EF4444;
+    --text: #F5F5F0;
+    --text-muted: #8993A4;
+    --text-dim: #4F5764;
+    --border: rgba(255, 255, 255, 0.07);
+    --border-strong: rgba(255, 255, 255, 0.14);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Archivo', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 500;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.5;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(
+        135deg,
+        transparent 0px,
+        transparent 2px,
+        rgba(255, 255, 255, 0.012) 2px,
+        rgba(255, 255, 255, 0.012) 3px
+      );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 90% 10%, rgba(250, 204, 21, 0.05), transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  nav, main, section, footer { position: relative; z-index: 1; }
+
+  /* NAV */
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 48px;
+    max-width: 1500px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .nav-logo img { height: 76px; width: auto; }
+
+  .nav-logo span {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: var(--text);
+    text-transform: uppercase;
+    display: inline-block;
+    transform: skewX(-4deg);
+  }
+
+  .nav-logo span .q {
+    color: var(--gold);
+    margin-left: 2px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: 'Archivo', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a.active { color: var(--text); }
+
+  /* HERO */
+  .page-hero {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 80px 48px 60px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 60px;
+    border-bottom: 2px solid var(--border-strong);
+  }
+
+  .page-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .page-eyebrow::before {
+    content: '';
+    width: 36px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .page-title {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(72px, 12vw, 200px);
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+
+  .page-title .accent { color: var(--gold); }
+
+  .page-sub {
+    color: var(--text-muted);
+    font-size: 16px;
+    max-width: 340px;
+    font-weight: 500;
+    line-height: 1.55;
+    padding-bottom: 12px;
+  }
+
+  .page-sub b { color: var(--text); font-weight: 700; }
+
+  /* CATEGORY NAV STRIP */
+  .cat-strip {
+    background: var(--gold);
+    color: #000;
+    border-bottom: 2px solid #000;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .cat-inner {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 18px 48px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+
+  .cat-label {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    flex-shrink: 0;
+    border-right: 2px solid #000;
+    padding-right: 22px;
+  }
+
+  .cat-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 22px;
+    list-style: none;
+    flex: 1;
+  }
+
+  .cat-links a {
+    font-family: 'Archivo Black', sans-serif;
+    color: #000;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: opacity 0.15s;
+  }
+
+  .cat-links a:hover { opacity: 0.55; }
+
+  /* FAQ SECTIONS */
+  .faq-wrap {
+    max-width: 1500px;
+    margin: 0 auto;
+  }
+
+  .faq-section {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    border-bottom: 1px solid var(--border);
+    min-height: 240px;
+  }
+
+  .faq-section-head {
+    padding: 64px 48px 48px;
+    border-right: 1px solid var(--border);
+    background: linear-gradient(135deg, var(--surface) 0%, var(--bg) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .faq-section-head::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+  }
+
+  .faq-section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    border-left: 2px solid var(--gold);
+    padding-left: 14px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .faq-section-title {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(36px, 4vw, 56px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+  }
+
+  .faq-section-title .accent { color: var(--gold); }
+
+  .faq-section-body {
+    padding: 64px 60px;
+  }
+
+  .faq-item {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .faq-item:first-child { padding-top: 0; }
+  .faq-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .faq-question {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 19px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+
+  .faq-answer {
+    color: var(--text-muted);
+    font-size: 16px;
+    line-height: 1.65;
+    font-weight: 500;
+    max-width: 720px;
+  }
+
+  .faq-answer b {
+    color: var(--text);
+    font-weight: 700;
+  }
+
+  /* CTA */
+  .cta-banner-wrap {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 60px 48px 120px;
+  }
+
+  .cta-banner {
+    background: var(--text);
+    color: #000;
+    border-radius: 18px;
+    padding: 80px 56px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-banner::before {
+    content: 'ANY • QS';
+    position: absolute;
+    top: -30px;
+    right: -40px;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 180px;
+    color: rgba(0, 0, 0, 0.05);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .cta-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 14px;
+    background: #000;
+    color: var(--green);
+    border-radius: 4px;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-title {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(48px, 7vw, 96px);
+    text-transform: uppercase;
+    letter-spacing: -0.04em;
+    line-height: 0.9;
+    margin-bottom: 22px;
+    position: relative;
+    z-index: 1;
+    color: #000;
+  }
+
+  .cta-sub {
+    color: #1a1a1a;
+    font-size: 17px;
+    margin-bottom: 36px;
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+    line-height: 1.5;
+  }
+
+  .cta-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 24px;
+    border-radius: 4px;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.2s, background 0.2s;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary { background: #000; color: var(--gold); }
+
+  .btn-primary:hover {
+    background: #1a1a1a;
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: #000;
+    border: 2px solid #000;
+  }
+
+  .btn-ghost:hover { background: #000; color: var(--text); }
+
+  .btn-arrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  /* FOOTER */
+  .footer {
+    border-top: 1px solid var(--border);
+    background: #000;
+  }
+
+  .footer-inner {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 40px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .footer-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .footer-left img { height: 32px; opacity: 0.7; }
+
+  .footer-copy {
+    color: var(--text-dim);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: 'Archivo', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .nav { padding: 18px 24px; }
+    .nav-links { gap: 24px; }
+    .nav-logo span { display: none; }
+
+    .page-hero {
+      padding: 50px 24px 40px;
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .cat-inner { padding: 16px 24px; }
+    .cat-label { padding-right: 16px; font-size: 11px; }
+    .cat-links a { font-size: 11px; }
+
+    .faq-section {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+
+    .faq-section-head {
+      padding: 40px 24px 32px;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-section-body { padding: 40px 24px; }
+
+    .cta-banner-wrap { padding: 40px 24px 80px; }
+    .cta-banner { padding: 60px 28px; }
+    .cta-banner::before { font-size: 110px; }
+
+    .footer-inner { padding: 30px 24px; flex-direction: column; text-align: center; }
+  }
+
+  @media (max-width: 600px) {
+    .page-title { font-size: 64px; }
+    .faq-section-title { font-size: 32px; }
+    .faq-question { font-size: 17px; }
+    .faq-answer { font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/assets/wyp-logo.png" alt="What's Your Pick?">
+    <span>WHAT'S YOUR PICK<span class="q">?</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/howtoplay">HOW TO PLAY</a></li>
+    <li><a href="/faq" class="active">FAQ</a></li>
+    <li><a href="/privacypolicy">PRIVACY</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="hero-left">
+      <div class="page-eyebrow">ASKED &amp; ANSWERED · BEFORE YOU PICK</div>
+      <h1 class="page-title">QUESTIONS,<br><span class="accent">ANSWERED.</span></h1>
+    </div>
+    <p class="page-sub">Everything you might want to know <b>before, during, and after</b> you start predicting.</p>
+  </section>
+
+  <!-- CATEGORY NAV STRIP -->
+  <div class="cat-strip">
+    <div class="cat-inner">
+      <div class="cat-label">JUMP TO</div>
+      <ul class="cat-links">
+        <li><a href="#basics">BASICS</a></li>
+        <li><a href="#picks">PICKS</a></li>
+        <li><a href="#scoring">SCORING</a></li>
+        <li><a href="#groups">GROUPS</a></li>
+        <li><a href="#pundit">PUNDIT</a></li>
+        <li><a href="#rules">HOUSE RULES</a></li>
+        <li><a href="#tournament">TOURNAMENT</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <section class="faq-wrap">
+
+    <!-- BASICS -->
+    <div class="faq-section" id="basics">
+      <div class="faq-section-head">
+        <div class="faq-section-num">01 · GETTING IN</div>
+        <h2 class="faq-section-title">THE<br><span class="accent">BASICS.</span></h2>
+      </div>
+      <div class="faq-section-body">
+
+        <div class="faq-item">
+          <h3 class="faq-question">What is What's Your Pick?</h3>
+          <p class="faq-answer">A free social prediction game built for the 2026 FIFA World Cup. You make picks before every match, earn points for getting them right, and find out which one of your friends is actually a Pundit.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">Is it really free?</h3>
+          <p class="faq-answer">Yes. <b>No ads, no in-app purchases, no premium tier.</b> You make picks, your friends make picks, the app scores them. That's the whole product.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">Do I need to bet money to play?</h3>
+          <p class="faq-answer">No. There's no real money, no virtual currency, no gambling mechanic anywhere in the app. The stakes are whatever your friends agree on — that's what House Rules are for.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">Is this gambling?</h3>
+          <p class="faq-answer">No. You're not wagering money or anything of monetary value. You're making picks against your friends for bragging rights — and whatever consequences your group decides to attach to a win or a loss.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">Will the app work after the World Cup ends?</h3>
+          <p class="faq-answer">Yes. Your account, your friends, your stats — all of it persists. We'll add more tournaments after 2026 (<b>Euros, Champions League, Copa América</b>) so the same crew can keep playing.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- MAKING PICKS -->
+    <div class="faq-section" id="picks">
+      <div class="faq-section-head">
+        <div class="faq-section-num">02 · MAKING PICKS</div>
+        <h2 class="faq-section-title">THE<br><span class="accent">CALLS.</span></h2>
+      </div>
+      <div class="faq-section-body">
+
+        <div class="faq-item">
+          <h3 class="faq-question">How do I make a pick?</h3>
+          <p class="faq-answer">Tap into any upcoming match. You'll see what's available to call — who wins, who scores for each side, how the match ends. Tap your picks, and they save automatically. <b>No "submit" button.</b></p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">When do picks lock?</h3>
+          <p class="faq-answer">At the exact moment the match kicks off. Once the ball is in play, your picks are locked in and can't be changed.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">Can I change my pick before kickoff?</h3>
+          <p class="faq-answer">Yes — as many times as you want, right up until kickoff. We save the most recent version.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">What if I forget to pick before kickoff?</h3>
+          <p class="faq-answer">Whatever you had locked in at kickoff time is what counts. If you didn't make any picks for a match, you score zero for that match — <b>no penalty, just a missed opportunity.</b></p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">I'm in multiple groups. Do I have to make the same picks in each one?</h3>
+          <p class="faq-answer">No — and you couldn't even if you wanted to. You have <b>one set of picks per match</b>, period. Those picks are scored once, and the same score shows up on every leaderboard you're on. What changes per group is who you're ranked against and what your House Rules pay out.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">What if I want to make different picks for different groups?</h3>
+          <p class="faq-answer">That's not how the game works. The whole point is you have one opinion about FRA vs GER, and that opinion plays out across all your friend circles. Think of it like an NCAA bracket — you fill out one bracket, and it competes in every pool you're in.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">Where do I see all the matches I need to pick?</h3>
+          <p class="faq-answer">Your <b>Today</b> view on the group screen shows what's coming up that day. The full schedule is in the Predict tab — you can scroll through every match from group stage to the final.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SCORING -->
+    <div class="faq-section" id="scoring">
+      <div class="faq-section-head">
+        <div class="faq-section-num">03 · POINTS</div>
+        <h2 class="faq-section-title">HOW IT<br><span class="accent">SCORES.</span></h2>
+      </div>
+      <div class="faq-section-body">
+
+        <div class="faq-item">
+          <h3 class="faq-question">How do points work?</h3>
+          <p class="faq-answer">Every match gives you the chance to earn up to <b>+9 points</b>, broken into separate calls (winner, goalscorers, how the match ends). Tournament-level calls (Trophy, Golden Boot, finalists, group winners) pay out at the end of the tournament.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">What counts as a "sweep"?</h3>
+          <p class="faq-answer">Getting every available call right on a single match. Sweep a match and you get <b>crowned the Pundit</b> for that matchday — plus whatever your House Rules say sweepers earn.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">What if no one scores in the match?</h3>
+          <p class="faq-answer">If you picked a goalscorer and no one from that team scored, that pick doesn't land. The other calls (winner, decided by) still score normally.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">Do tournament picks lock when the tournament starts?</h3>
+          <p class="faq-answer">Yes. Once the first match of the World Cup kicks off, all tournament-level picks are locked. You can't change your Tournament Winner pick once the ball's rolling.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">Can I see how I'm scoring during a match?</h3>
+          <p class="faq-answer">Yes — your live score updates as the match plays out. You'll see what landed and what didn't in real time.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- GROUPS -->
+    <div class="faq-section" id="groups">
+      <div class="faq-section-head">
+        <div class="faq-section-num">04 · CREWS</div>
+        <h2 class="faq-section-title">THE<br><span class="accent">GROUPS.</span></h2>
+      </div>
+      <div class="faq-section-body">
+
+        <div class="faq-item">
+          <h3 class="faq-question">How do I create a group?</h3>
+          <p class="faq-answer">Tap <b>+ Create group</b> on the home screen. Name it, pick a tournament, set your House Rules, and share the invite code with your friends. Done.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">How do I join a friend's group?</h3>
+          <p class="faq-answer">Tap <b>Join with code</b> and enter the code they shared. You're in.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">How many people can be in a group?</h3>
+          <p class="faq-answer">No hard limit, but groups feel best around <b>4–12 people</b>. Big enough for banter, small enough that everyone matters.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">Can I be in more than one group?</h3>
+          <p class="faq-answer">Yes — join as many as you want. The Office Crew, your college friends, your Sunday League — they're all separate leaderboards using your same picks.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">Who can change the group's settings?</h3>
+          <p class="faq-answer">The person who created the group. They can rename it, update House Rules, and remove members if needed.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">Can I leave a group?</h3>
+          <p class="faq-answer">Yes, from the group settings screen. Your picks stay in the system but you stop appearing on that group's leaderboard.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">What if someone in my group is being annoying?</h3>
+          <p class="faq-answer">The group creator can remove members. There's also a <b>Report</b> option on any user's profile if it's a more serious issue.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">Are groups private?</h3>
+          <p class="faq-answer">Yes. Groups are <b>invite-only</b> — no public discovery, no strangers finding you. The only way in is the invite code.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PUNDIT -->
+    <div class="faq-section" id="pundit">
+      <div class="faq-section-head">
+        <div class="faq-section-num">05 · THE CROWN</div>
+        <h2 class="faq-section-title">THE<br><span class="accent">PUNDIT.</span></h2>
+      </div>
+      <div class="faq-section-body">
+
+        <div class="faq-item">
+          <h3 class="faq-question">What's the Pundit?</h3>
+          <p class="faq-answer">The friend in your group with the most points. The crown is shown next to their name on the leaderboard, and your House Rules might attach extra perks (or extra teasing) to wearing it.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">When does someone become the Pundit?</h3>
+          <p class="faq-answer">Two ways: <b>per-match</b> (whoever sweeps gets the crown for that matchday) and <b>per-tournament</b> (whoever has the most points at the end of the World Cup gets crowned for the whole tournament).</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">What if there's a tie?</h3>
+          <p class="faq-answer">Tied players share the crown until the next round of matches breaks the tie. <b>No tiebreakers, no sudden death</b> — just keep playing.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">Does the Pundit get anything in the app?</h3>
+          <p class="faq-answer">A badge on their profile, a crown icon next to their name, and bragging rights. Whatever else they get is up to your group's House Rules.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- HOUSE RULES -->
+    <div class="faq-section" id="rules">
+      <div class="faq-section-head">
+        <div class="faq-section-num">06 · STAKES</div>
+        <h2 class="faq-section-title">HOUSE<br><span class="accent">RULES.</span></h2>
+      </div>
+      <div class="faq-section-body">
+
+        <div class="faq-item">
+          <h3 class="faq-question">What are House Rules?</h3>
+          <p class="faq-answer">The real-life stakes your group attaches to winning and losing. Buy the Pundit a coffee. Make the day's worst predictor sing karaoke. Send a friend a cringe selfie. <b>Your group decides, the app tracks who owes what.</b></p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">Who sets the House Rules?</h3>
+          <p class="faq-answer">The group creator sets them up when creating the group, but they can be edited by the creator anytime.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">Does the app enforce the rules?</h3>
+          <p class="faq-answer">No — we're not coming to your house with a karaoke mic. The app surfaces who owes what after each match. It's on your group to actually follow through. <b>(That's most of the fun.)</b></p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">Can I refuse to do my punishment?</h3>
+          <p class="faq-answer">That's between you and your friends. The app will keep showing it on your profile until you mark it as completed.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TOURNAMENT CALLS -->
+    <div class="faq-section" id="tournament">
+      <div class="faq-section-head">
+        <div class="faq-section-num">07 · BIG CALLS</div>
+        <h2 class="faq-section-title">TOURNAMENT<br><span class="accent">CALLS.</span></h2>
+      </div>
+      <div class="faq-section-body">
+
+        <div class="faq-item">
+          <h3 class="faq-question">What are tournament calls?</h3>
+          <p class="faq-answer">Big-picture picks you make before the World Cup starts: who lifts the trophy, who wins the Golden Boot, both finalists, group stage winners. <b>They lock at first kickoff and score at the end of the tournament.</b></p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">Are tournament calls required?</h3>
+          <p class="faq-answer">No, they're optional. But they're worth a lot of points — players who skip them give up a real edge.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">Can I update my tournament calls after the World Cup starts?</h3>
+          <p class="faq-answer">No. Tournament calls lock at the exact moment the first match kicks off. <b>Make them count.</b></p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">What if a team I picked gets knocked out?</h3>
+          <p class="faq-answer">That pick is done. You don't get points for it, but it doesn't subtract anything either.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner-wrap">
+    <div class="cta-banner">
+      <div class="cta-pill">⚽ STILL CURIOUS</div>
+      <h2 class="cta-title">DIDN'T FIND<br>YOUR ANSWER?</h2>
+      <p class="cta-sub">Email us. We read every message and reply to most within a day.</p>
+      <div class="cta-row">
+        <a href="/" class="btn btn-ghost">← BACK TO HOME</a>
+        <a href="mailto:cpguirguis@gmail.com" class="btn btn-primary">EMAIL US <span class="btn-arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <img src="/assets/wyp-logo.png" alt="WYP">
+      <div class="footer-copy">© 2026 · MADE IN MISSISSAUGA</div>
+    </div>
+    <ul class="footer-links">
+      <li><a href="/howtoplay">HOW TO PLAY</a></li>
+      <li><a href="/faq">FAQ</a></li>
+      <li><a href="/privacypolicy">PRIVACY</a></li>
+      <li><a href="mailto:cpguirguis@gmail.com">CONTACT</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
