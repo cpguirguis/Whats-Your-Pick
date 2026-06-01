@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WHAT'S YOUR PICK — CALL THE WORLD CUP WITH YOUR FRIENDS</title>
+<title>WHAT'S YOUR PICK? — CALL THE WORLD CUP WITH YOUR FRIENDS</title>
 <meta name="description" content="Free social prediction game for the 2026 FIFA World Cup. Make picks, earn points, crown the Pundit.">
-<meta property="og:title" content="WHAT'S YOUR PICK — Call the World Cup with your friends">
+<meta property="og:title" content="WHAT'S YOUR PICK? — Call the World Cup with your friends">
 <meta property="og:description" content="Free social prediction game for the 2026 FIFA World Cup.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://whatsyourpick.app">
@@ -182,10 +182,17 @@
 
   .nav-logo span {
     font-family: 'Archivo Black', sans-serif;
-    font-size: 14px;
-    letter-spacing: 2.5px;
+    font-size: 20px;
+    letter-spacing: 2px;
     color: var(--text);
     text-transform: uppercase;
+    display: inline-block;
+    transform: skewX(-4deg);
+  }
+
+  .nav-logo span .q {
+    color: var(--gold);
+    margin-left: 2px;
   }
 
   .nav-links {
@@ -440,17 +447,15 @@
     height: 64px;
     border-radius: 12px;
     margin: 0 auto 10px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
     overflow: hidden;
   }
 
   .team-flag.fra {
-    background: linear-gradient(to right, #002654 33.33%, #FFFFFF 33.33%, #FFFFFF 66.67%, #ED2939 66.67%);
+    background: linear-gradient(to right, #002654 0%, #002654 33.33%, #FFFFFF 33.33%, #FFFFFF 66.67%, #ED2939 66.67%, #ED2939 100%);
   }
 
   .team-flag.ger {
-    background: linear-gradient(to bottom, #000000 33.33%, #DD0000 33.33%, #DD0000 66.67%, #FFCE00 66.67%);
+    background: linear-gradient(to bottom, #000000 0%, #000000 33.33%, #DD0000 33.33%, #DD0000 66.67%, #FFCE00 66.67%, #FFCE00 100%);
   }
 
   .team-name {
@@ -1012,8 +1017,8 @@
 <!-- NAV -->
 <nav class="nav">
   <a href="/" class="nav-logo">
-    <img src="/assets/wyp-logo.png" alt="WHAT'S YOUR PICK">
-    <span>WHAT'S YOUR PICK</span>
+    <img src="/assets/wyp-logo.png" alt="What's Your Pick?">
+    <span>WHAT'S YOUR PICK<span class="q">?</span></span>
   </a>
   <ul class="nav-links">
     <li><a href="/howtoplay">HOW TO PLAY</a></li>
@@ -1029,8 +1034,6 @@
       <div class="hero-tag">
         <span class="hero-tag-dot"></span>
         <span>BUILT FOR WORLD CUP 2026</span>
-        <span class="hero-tag-bar"></span>
-        <span>FREE FOREVER</span>
       </div>
       <h1 class="hero-title">
         CALL THE<br>
