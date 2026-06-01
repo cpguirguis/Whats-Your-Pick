@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PRIVACY POLICY · WHAT'S YOUR PICK</title>
+<meta name="description" content="How What's Your Pick collects, uses, and protects your data.">
+<link rel="icon" type="image/png" href="/assets/wyp-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0A0C10;
+    --surface: #131820;
+    --surface-2: #1B2230;
+    --gold: #FACC15;
+    --green: #4ADE80;
+    --text: #F5F5F0;
+    --text-muted: #8993A4;
+    --text-dim: #4F5764;
+    --border: rgba(255, 255, 255, 0.07);
+    --border-strong: rgba(255, 255, 255, 0.14);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Archivo', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 500;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(
+        135deg,
+        transparent 0px,
+        transparent 2px,
+        rgba(255, 255, 255, 0.012) 2px,
+        rgba(255, 255, 255, 0.012) 3px
+      );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  nav, main, footer { position: relative; z-index: 1; }
+
+  /* NAV */
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 48px;
+    max-width: 1500px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .nav-logo img { height: 38px; width: auto; }
+
+  .nav-logo span {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 14px;
+    letter-spacing: 2.5px;
+    color: var(--text);
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: 'Archivo', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a.active { color: var(--text); }
+
+  /* HERO */
+  .page-hero {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 48px 50px;
+    border-bottom: 2px solid var(--border-strong);
+  }
+
+  .page-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .page-eyebrow::before {
+    content: '';
+    width: 36px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .page-title {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(56px, 9vw, 132px);
+    line-height: 0.88;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  .page-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 24px;
+    padding: 10px 18px;
+    background: var(--surface);
+    border: 1px solid var(--border-strong);
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  .page-meta b {
+    color: var(--text);
+    font-weight: 700;
+  }
+
+  .page-meta-divider {
+    width: 1px;
+    height: 14px;
+    background: var(--border-strong);
+  }
+
+  /* CONTENT */
+  .content {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 60px 48px 100px;
+  }
+
+  .content h2 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(28px, 3vw, 36px);
+    letter-spacing: -0.025em;
+    text-transform: uppercase;
+    margin: 64px 0 24px;
+    color: var(--text);
+    line-height: 1.05;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-strong);
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+  }
+
+  .content h2:first-child { margin-top: 0; }
+
+  .content h2 .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--gold);
+    letter-spacing: 1px;
+    flex-shrink: 0;
+  }
+
+  .content h3 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 15px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin: 32px 0 12px;
+    color: var(--text);
+    text-transform: uppercase;
+  }
+
+  .content p {
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.75;
+    margin-bottom: 18px;
+    font-weight: 500;
+  }
+
+  .content p.muted {
+    color: var(--text-muted);
+  }
+
+  .content strong, .content b {
+    color: var(--text);
+    font-weight: 700;
+  }
+
+  .content a {
+    color: var(--green);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(74, 222, 128, 0.4);
+    transition: border-color 0.2s, color 0.2s;
+    font-weight: 600;
+  }
+
+  .content a:hover {
+    color: var(--green);
+    border-bottom-color: var(--green);
+  }
+
+  .content ul {
+    list-style: none;
+    margin: 18px 0;
+    padding: 0;
+  }
+
+  .content ul li {
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 12px;
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.65;
+    font-weight: 500;
+  }
+
+  .content ul li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--gold);
+    font-size: 11px;
+  }
+
+  .content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 28px 0;
+    background: var(--surface);
+    border: 1px solid var(--border-strong);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .content table th {
+    text-align: left;
+    padding: 14px 18px;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: #000;
+    border-bottom: 1px solid var(--border-strong);
+  }
+
+  .content table td {
+    padding: 16px 18px;
+    font-size: 14px;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    font-weight: 500;
+  }
+
+  .content table tr:last-child td { border-bottom: none; }
+
+  .callout {
+    background: var(--surface);
+    border: 1px solid var(--border-strong);
+    border-left: 4px solid var(--gold);
+    border-radius: 4px;
+    padding: 22px 28px;
+    margin: 28px 0;
+  }
+
+  .callout p:last-child { margin-bottom: 0; }
+
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 56px 0;
+  }
+
+  .contact-card {
+    background: #000;
+    border: 1px solid var(--border-strong);
+    border-radius: 8px;
+    padding: 36px 40px;
+    margin-top: 28px;
+  }
+
+  .contact-card .contact-header {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 12px;
+    letter-spacing: 2.5px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px dashed var(--border-strong);
+  }
+
+  .contact-card p { margin-bottom: 10px; }
+  .contact-card p:last-child { margin-bottom: 0; }
+
+  /* FOOTER */
+  .footer {
+    border-top: 1px solid var(--border);
+    background: #000;
+  }
+
+  .footer-inner {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 40px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .footer-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .footer-left img { height: 32px; opacity: 0.7; }
+
+  .footer-copy {
+    color: var(--text-dim);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: 'Archivo', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .nav { padding: 18px 24px; }
+    .nav-links { gap: 22px; }
+    .nav-logo span { display: none; }
+
+    .page-hero { padding: 50px 24px 30px; }
+    .content { padding: 40px 24px 80px; }
+
+    .content h2 {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    .content table {
+      display: block;
+      overflow-x: auto;
+    }
+
+    .page-meta { flex-direction: column; align-items: flex-start; gap: 8px; padding: 14px 18px; }
+    .page-meta-divider { display: none; }
+
+    .footer-inner { padding: 30px 24px; flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/assets/wyp-logo.png" alt="WHAT'S YOUR PICK">
+    <span>WHAT'S YOUR PICK</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/howtoplay">HOW TO PLAY</a></li>
+    <li><a href="/privacypolicy" class="active">PRIVACY</a></li>
+  </ul>
+</nav>
+
+<main>
+  <section class="page-hero">
+    <div class="page-eyebrow">PLAIN LANGUAGE · NO TRICKS</div>
+    <h1 class="page-title">PRIVACY<br>POLICY</h1>
+    <div class="page-meta">
+      <span><b>EFFECTIVE</b> · 31 MAY 2026</span>
+      <span class="page-meta-divider"></span>
+      <span><b>UPDATED</b> · 31 MAY 2026</span>
+    </div>
+  </section>
+
+  <article class="content">
+
+    <h2><span class="num">[ 01 ]</span><span>ABOUT THIS POLICY</span></h2>
+    <p>This Privacy Policy explains how <strong>Cyril Paul Guirguis</strong>, operating as What's Your Pick ("we," "us," "our") collects, uses, shares, and protects information when you use the <strong>What's Your Pick</strong> mobile application ("WYP," the "App").</p>
+    <p>By creating an account or using WYP, you agree to the practices described in this policy. If you do not agree, please do not use the App.</p>
+    <p class="muted">We've written this in plain language. If anything is unclear, contact us at <a href="mailto:cpguirguis@gmail.com">cpguirguis@gmail.com</a>.</p>
+
+    <h2><span class="num">[ 02 ]</span><span>WHO WE ARE</span></h2>
+    <p>WYP is a free social prediction game for the FIFA World Cup 2026. The App lets users make predictions about matches, compete in private groups with friends, and view leaderboards. There is <strong>no real-money gambling, no betting, no in-app purchases</strong>, and no advertising.</p>
+    <div class="callout">
+      <p>The data controller for the purposes of GDPR and equivalent laws is:</p>
+      <p><strong>Cyril Paul Guirguis</strong>, operating as What's Your Pick<br>1967 Sandown Road, Mississauga, Ontario, L5M 2Z8, Canada<br>Email: <a href="mailto:cpguirguis@gmail.com">cpguirguis@gmail.com</a></p>
+    </div>
+
+    <h2><span class="num">[ 03 ]</span><span>INFORMATION WE COLLECT</span></h2>
+    <p>We collect only the information necessary to operate WYP. We <strong>do not</strong> sell, rent, or trade your personal information to third parties.</p>
+
+    <h3>3.1 INFORMATION YOU PROVIDE</h3>
+    <ul>
+      <li><strong>Account information:</strong> When you sign in with Apple, Google, or email, we collect your email address. If signing in with Apple or Google, we may also receive your name (you can edit this in the App).</li>
+      <li><strong>Profile information:</strong> Your display name and optional profile photo.</li>
+      <li><strong>User-generated content:</strong> Predictions you make on matches, groups you create or join, and any text you enter (group names, etc.).</li>
+    </ul>
+
+    <h3>3.2 INFORMATION WE RECEIVE AUTOMATICALLY</h3>
+    <ul>
+      <li><strong>Account identifier:</strong> A unique user ID assigned by our backend (Supabase) when you sign in.</li>
+      <li><strong>Authentication tokens:</strong> Cryptographic tokens issued by Apple, Google, or our backend used to keep you signed in securely. These are stored on your device and never shared with third parties.</li>
+      <li><strong>Technical logs:</strong> Standard server logs (IP address, timestamp, request type) generated by our backend infrastructure for security, debugging, and abuse prevention. These logs are retained for up to 30 days unless required longer for legal or security reasons.</li>
+    </ul>
+
+    <h3>3.3 INFORMATION WE DO <em>NOT</em> COLLECT</h3>
+    <p>To be explicit, WYP does <strong>not</strong> collect:</p>
+    <ul>
+      <li>Your precise location</li>
+      <li>Your contacts</li>
+      <li>Your photos or media (except a profile photo you voluntarily upload)</li>
+      <li>Your microphone or camera data</li>
+      <li>Your browsing or app usage outside of WYP</li>
+      <li>Advertising identifiers (IDFA, AAID)</li>
+      <li>Health, financial, or payment data</li>
+      <li>Biometric data</li>
+    </ul>
+    <p>We do not use any third-party analytics, advertising SDKs, or tracking tools. We do not engage in cross-app or cross-website tracking.</p>
+
+    <h2><span class="num">[ 04 ]</span><span>HOW WE USE YOUR INFORMATION</span></h2>
+    <p>We use the information we collect only for these purposes:</p>
+    <table>
+      <thead>
+        <tr><th>PURPOSE</th><th>EXAMPLES</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Provide the service</strong></td><td>Display your predictions, calculate scores, show leaderboards, sync data across your devices</td></tr>
+        <tr><td><strong>Authenticate you</strong></td><td>Verify your identity at sign-in, keep you signed in securely</td></tr>
+        <tr><td><strong>Communicate with you</strong></td><td>Send transactional notifications (e.g., "Your match locks in 10 minutes") and support responses</td></tr>
+        <tr><td><strong>Maintain security</strong></td><td>Detect abuse, prevent fraud, debug issues, comply with legal obligations</td></tr>
+        <tr><td><strong>Comply with the law</strong></td><td>Respond to lawful requests from regulators or courts</td></tr>
+      </tbody>
+    </table>
+    <p>Our legal basis for processing (under GDPR) is <strong>performance of a contract</strong> with you (we cannot provide the App without processing your account data) and our <strong>legitimate interests</strong> in operating a secure service.</p>
+
+    <h2><span class="num">[ 05 ]</span><span>WHO WE SHARE INFORMATION WITH</span></h2>
+    <p>We share information only with the limited third parties listed below, each of whom acts as a data processor on our behalf and is contractually required to protect your data.</p>
+
+    <h3>5.1 SERVICE PROVIDERS</h3>
+    <ul>
+      <li><strong>Supabase</strong> (Supabase Inc., based in the United States): hosts our backend, database, and authentication. Your account information and predictions are stored in Supabase's secure infrastructure. <a href="https://supabase.com/privacy" target="_blank" rel="noopener">Supabase Privacy Policy</a></li>
+      <li><strong>Apple</strong> (Apple Inc.): if you sign in with Apple, Apple verifies your identity and returns an authentication token to us. Apple may give us an email (which can be a relay address that hides your real email). <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple Privacy Policy</a></li>
+      <li><strong>Google</strong> (Google LLC): if you sign in with Google, Google verifies your identity and returns an authentication token to us. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a></li>
+      <li><strong>API-Football</strong> (API-Sports SAS): provides match schedules and results. We send no personal information to API-Football — only generic queries for fixtures. <a href="https://www.api-football.com/privacy-policy" target="_blank" rel="noopener">API-Sports Privacy Policy</a></li>
+      <li><strong>Apple Push Notification Service</strong> and <strong>Firebase Cloud Messaging</strong> (Google): deliver push notifications to your device. Notification content does not include sensitive personal data.</li>
+    </ul>
+
+    <h3>5.2 OTHER USERS</h3>
+    <p>Your <strong>display name</strong>, <strong>profile photo</strong> (if you've added one), and <strong>predictions</strong> are visible to other members of any group you join. Your email address is <strong>never</strong> visible to other users.</p>
+
+    <h3>5.3 LEGAL DISCLOSURES</h3>
+    <p>We may disclose information if required by law, court order, or to protect our rights, your safety, or the safety of others. We will challenge overbroad requests where appropriate.</p>
+
+    <h3>5.4 BUSINESS TRANSFERS</h3>
+    <p>If we are acquired, merged, or sell substantially all our assets, your information may be transferred to the successor entity. We will notify you (by email and in-app notice) before your data is transferred and becomes subject to a different privacy policy.</p>
+
+    <h2><span class="num">[ 06 ]</span><span>WHERE YOUR DATA IS STORED</span></h2>
+    <p>Your data is stored on servers operated by Supabase, located in <strong>the United States</strong> (AWS region us-east-1). If you access WYP from outside the United States (for example, from Canada, Europe, or elsewhere), your data is transferred to and processed in the United States under appropriate safeguards, including Standard Contractual Clauses where required by GDPR.</p>
+
+    <h2><span class="num">[ 07 ]</span><span>HOW LONG WE KEEP YOUR DATA</span></h2>
+    <ul>
+      <li><strong>Active accounts:</strong> We retain your account data for as long as your account exists.</li>
+      <li><strong>Deleted accounts:</strong> When you delete your account (see Section 9), we permanently delete your profile, predictions, and group memberships from our active database within <strong>30 days</strong>. Backup snapshots may retain residual data for up to <strong>90 days</strong> before they are rotated out.</li>
+      <li><strong>Server logs:</strong> 30 days, except where retained longer for legal or security reasons.</li>
+      <li><strong>Legal holds:</strong> We may retain information longer if required by law or to defend legal claims.</li>
+    </ul>
+
+    <h2><span class="num">[ 08 ]</span><span>YOUR RIGHTS AND CHOICES</span></h2>
+    <p>Depending on where you live, you have the following rights regarding your personal data:</p>
+    <ul>
+      <li><strong>Access:</strong> Request a copy of the personal data we hold about you.</li>
+      <li><strong>Correction:</strong> Correct inaccurate or incomplete data (most fields can be edited directly in the App).</li>
+      <li><strong>Deletion:</strong> Delete your account and all associated data (see Section 9).</li>
+      <li><strong>Portability:</strong> Receive your data in a machine-readable format.</li>
+      <li><strong>Restriction or objection:</strong> Restrict or object to certain processing.</li>
+      <li><strong>Withdraw consent:</strong> Where we rely on consent, withdraw it at any time.</li>
+      <li><strong>Complain to a regulator:</strong> Lodge a complaint with your local data protection authority (in the EU, your national DPA; in the UK, the ICO; in Canada, the Office of the Privacy Commissioner of Canada).</li>
+    </ul>
+    <p>To exercise any of these rights, email us at <a href="mailto:cpguirguis@gmail.com">cpguirguis@gmail.com</a>. We will respond within 30 days.</p>
+
+    <h3>CALIFORNIA RESIDENTS (CCPA / CPRA)</h3>
+    <p>If you are a California resident, you have specific rights including the right to know, the right to delete, the right to correct, and the right to opt out of the sale or sharing of personal information. <strong>We do not sell or share your personal information for cross-context behavioral advertising.</strong> To exercise your rights, contact us at <a href="mailto:cpguirguis@gmail.com">cpguirguis@gmail.com</a>.</p>
+
+    <h2><span class="num">[ 09 ]</span><span>ACCOUNT DELETION</span></h2>
+    <p>You can permanently delete your account at any time:</p>
+    <ul>
+      <li>Open the App</li>
+      <li>Go to <strong>Profile → Settings → Delete account</strong></li>
+      <li>Confirm</li>
+    </ul>
+    <p>This action immediately removes your profile, predictions, and group memberships from our active database. The deletion is <strong>permanent and cannot be undone</strong>.</p>
+    <p>You can also request deletion by emailing <a href="mailto:cpguirguis@gmail.com">cpguirguis@gmail.com</a> — we will action it within 30 days.</p>
+
+    <h2><span class="num">[ 10 ]</span><span>CHILDREN'S PRIVACY</span></h2>
+    <p>WYP is rated 12+ and is not intended for children under 13. We do not knowingly collect personal information from children under 13. If you believe a child under 13 has provided us with personal information, please contact us at <a href="mailto:cpguirguis@gmail.com">cpguirguis@gmail.com</a> and we will delete it promptly.</p>
+    <p>If you are between 13 and the age of majority in your country, please use the App only with the involvement of a parent or guardian.</p>
+
+    <h2><span class="num">[ 11 ]</span><span>DATA SECURITY</span></h2>
+    <p>We use industry-standard security measures to protect your data:</p>
+    <ul>
+      <li>All connections between the App and our backend are encrypted using HTTPS / TLS 1.2 or higher</li>
+      <li>Passwords (where applicable) are never stored in plaintext; we use Supabase's bcrypt-based hashing</li>
+      <li>Database access is restricted by row-level security policies that ensure users can only read their own data and data they're explicitly permitted to see</li>
+      <li>Authentication tokens are stored securely on your device's keychain (iOS) or keystore (Android)</li>
+      <li>We regularly review our security practices and dependencies</li>
+    </ul>
+    <p class="muted">No system is completely secure, however. If we become aware of a data breach affecting your personal information, we will notify you and applicable regulators as required by law.</p>
+
+    <h2><span class="num">[ 12 ]</span><span>INTERNATIONAL USERS</span></h2>
+    <p>WYP is operated from <strong>Canada</strong>. If you access the App from outside Canada, you understand that your data may be processed in a country with different data protection laws than your own. We take steps (including Standard Contractual Clauses where required) to ensure your data receives an adequate level of protection wherever it is processed.</p>
+
+    <h2><span class="num">[ 13 ]</span><span>CHANGES TO THIS POLICY</span></h2>
+    <p>We may update this policy from time to time. When we do:</p>
+    <ul>
+      <li>We will update the "Last Updated" date at the top</li>
+      <li>For material changes, we will notify you in the App and/or by email at least 14 days before the changes take effect</li>
+      <li>Continued use of the App after the effective date constitutes acceptance of the updated policy</li>
+    </ul>
+    <p>The current version of this policy is always available at <a href="https://whatsyourpick.app/privacypolicy">whatsyourpick.app/privacypolicy</a> and within the App under <strong>Settings → Privacy &amp; Terms</strong>.</p>
+
+    <h2><span class="num">[ 14 ]</span><span>CONTACT US</span></h2>
+    <p>If you have any questions, requests, or concerns about this policy or how we handle your data, please contact us:</p>
+    <div class="contact-card">
+      <div class="contact-header">DATA CONTROLLER</div>
+      <p><strong>Cyril Paul Guirguis</strong>, operating as What's Your Pick</p>
+      <p>Email: <a href="mailto:cpguirguis@gmail.com">cpguirguis@gmail.com</a></p>
+      <p>Address: 1967 Sandown Road, Mississauga, Ontario, L5M 2Z8, Canada</p>
+      <p class="muted" style="font-size: 14px; margin-top: 14px;">We aim to respond to all privacy inquiries within <strong>7 business days</strong>.</p>
+    </div>
+
+    <div class="divider"></div>
+    <p class="muted" style="font-size: 12px; text-align: center; font-family: 'JetBrains Mono', monospace; letter-spacing: 1px; text-transform: uppercase;">THIS POLICY APPLIES TO THE WHAT'S YOUR PICK MOBILE APPLICATION ONLY · NOT TO THIRD-PARTY LINKED SERVICES</p>
+
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <img src="/assets/wyp-logo.png" alt="WYP">
+      <div class="footer-copy">© 2026 · MADE IN MISSISSAUGA</div>
+    </div>
+    <ul class="footer-links">
+      <li><a href="/howtoplay">HOW TO PLAY</a></li>
+      <li><a href="/privacypolicy">PRIVACY</a></li>
+      <li><a href="mailto:cpguirguis@gmail.com">CONTACT</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
