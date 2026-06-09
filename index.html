@@ -3,12 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WHAT'S YOUR PICK? — CALL THE TOURNAMENT WITH YOUR FRIENDS</title>
-<meta name="description" content="Free social prediction game for the 2026 international soccer tournament. Make picks, earn points, crown the Pundit.">
-<meta property="og:title" content="WHAT'S YOUR PICK? — Call the tournament with your friends">
-<meta property="og:description" content="Free social prediction game for the 2026 international soccer tournament.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://whatsyourpick.app">
+<title>HOW TO PLAY · WHAT'S YOUR PICK?</title>
+<meta name="description" content="Learn how What's Your Pick? works in 60 seconds. Pick. Score. Crown.">
 <link rel="icon" type="image/png" href="/assets/wyp-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,10 +40,9 @@
     -moz-osx-font-smoothing: grayscale;
     min-height: 100vh;
     overflow-x: hidden;
-    line-height: 1.45;
+    line-height: 1.5;
   }
 
-  /* Diagonal grain texture */
   body::before {
     content: '';
     position: fixed;
@@ -64,103 +59,19 @@
     z-index: 0;
   }
 
-  /* Ambient glow */
   body::after {
     content: '';
     position: fixed;
     inset: 0;
     background:
-      radial-gradient(ellipse 70% 50% at 90% 20%, rgba(250, 204, 21, 0.08), transparent 60%),
-      radial-gradient(ellipse 70% 50% at 10% 80%, rgba(74, 222, 128, 0.06), transparent 60%);
+      radial-gradient(ellipse 70% 50% at 90% 10%, rgba(250, 204, 21, 0.05), transparent 60%);
     pointer-events: none;
     z-index: 0;
   }
 
-  nav, main, section, footer, .ticker { position: relative; z-index: 1; }
+  nav, main, section, footer { position: relative; z-index: 1; }
 
-  /* ===== TICKER ===== */
-  .ticker {
-    background: #000;
-    border-bottom: 1px solid var(--border);
-    overflow: hidden;
-    height: 38px;
-    display: flex;
-    align-items: center;
-    position: relative;
-  }
-
-  .ticker-label {
-    flex-shrink: 0;
-    background: var(--green);
-    color: #000;
-    padding: 0 14px;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    position: relative;
-    z-index: 2;
-  }
-
-  .ticker-label::before {
-    content: '';
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #000;
-    margin-right: 8px;
-    animation: pulse 1.5s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-  }
-
-  .ticker-track {
-    display: flex;
-    animation: tickerScroll 50s linear infinite;
-    white-space: nowrap;
-    will-change: transform;
-  }
-
-  @keyframes tickerScroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-
-  .ticker-item {
-    display: inline-flex;
-    align-items: center;
-    padding: 0 22px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--text-muted);
-    letter-spacing: 0.3px;
-  }
-
-  .ticker-item b {
-    color: var(--text);
-    margin-right: 6px;
-    font-weight: 700;
-  }
-
-  .ticker-item .up { color: var(--green); font-weight: 700; }
-  .ticker-item .down { color: var(--red); font-weight: 700; }
-  .ticker-item .gold { color: var(--gold); font-weight: 700; }
-
-  .ticker-item::after {
-    content: '◆';
-    color: var(--text-dim);
-    margin-left: 22px;
-    font-size: 8px;
-  }
-
-  /* ===== NAV ===== */
+  /* NAV */
   .nav {
     display: flex;
     justify-content: space-between;
@@ -199,7 +110,6 @@
     display: flex;
     gap: 40px;
     list-style: none;
-    align-items: center;
   }
 
   .nav-links a {
@@ -214,426 +124,619 @@
   }
 
   .nav-links a:hover { color: var(--gold); }
+  .nav-links a.active { color: var(--text); }
 
-  .nav-links a.nav-download {
-    background: var(--green);
-    color: #051A0E;
-    padding: 9px 16px;
-    border-radius: 5px;
-    letter-spacing: 1.2px;
-    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
-    animation: dlGlow 2.6s ease-in-out infinite;
-    transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
-  }
-  .nav-links a.nav-download:hover {
-    background: var(--green-bright);
-    color: #051A0E;
-    transform: translateY(-1px);
-  }
-  @keyframes dlGlow {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.0); }
-    50% { box-shadow: 0 0 18px 1px rgba(74, 222, 128, 0.45); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .nav-links a.nav-download { animation: none; }
-  }
-
-  /* ===== HERO ===== */
-  .hero {
+  /* HERO */
+  .page-hero {
     max-width: 1500px;
     margin: 0 auto;
-    padding: 60px 48px 100px;
+    padding: 80px 48px 60px;
     display: grid;
-    grid-template-columns: 1.15fr 1fr;
+    grid-template-columns: 1fr auto;
+    align-items: end;
     gap: 60px;
-    align-items: center;
-    position: relative;
+    border-bottom: 2px solid var(--border-strong);
   }
 
-  .hero-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 28px;
+  .hero-left {
+    /* */
+  }
+
+  .page-eyebrow {
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 2px;
-    color: var(--text-muted);
+    color: var(--gold);
+    letter-spacing: 2.5px;
     text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
   }
 
-  .hero-tag-dot {
-    width: 8px;
-    height: 8px;
-    background: var(--green);
-    border-radius: 50%;
-    box-shadow: 0 0 12px var(--green);
-    animation: pulse 2s ease-in-out infinite;
-  }
-
-  .hero-tag-bar {
-    width: 32px;
+  .page-eyebrow::before {
+    content: '';
+    width: 36px;
     height: 1px;
-    background: var(--text-dim);
+    background: var(--gold);
   }
 
-  .hero-title {
+  .page-title {
     font-family: 'Archivo Black', sans-serif;
-    font-size: clamp(64px, 9.5vw, 152px);
+    font-size: clamp(72px, 12vw, 200px);
     line-height: 0.85;
     letter-spacing: -0.04em;
     text-transform: uppercase;
-    margin-bottom: 24px;
     color: var(--text);
   }
 
-  .hero-title .accent {
-    color: var(--gold);
-    display: inline-block;
-    position: relative;
-  }
+  .page-title .accent { color: var(--gold); }
 
-  .hero-title .accent::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0.05em;
-    height: 0.05em;
-    background: var(--gold);
-    opacity: 0.35;
-  }
-
-  .hero-sub-banner {
-    display: inline-flex;
-    align-items: center;
-    gap: 14px;
-    background: var(--text);
-    color: var(--bg);
-    padding: 8px 18px;
-    border-radius: 4px;
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 14px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 28px;
-    transform: rotate(-1deg);
-  }
-
-  .hero-sub-banner span {
-    color: var(--green-deep);
-  }
-
-  .hero-subtitle {
-    font-family: 'Archivo', sans-serif;
-    font-size: 17px;
-    line-height: 1.5;
+  .page-sub {
     color: var(--text-muted);
-    max-width: 460px;
-    margin-bottom: 40px;
+    font-size: 16px;
+    max-width: 320px;
     font-weight: 500;
+    line-height: 1.55;
+    padding-bottom: 12px;
   }
 
-  .hero-subtitle b {
+  .page-sub b {
     color: var(--text);
     font-weight: 700;
   }
 
-  .cta-row {
+  /* TLDR Strip — like a sports magazine kicker */
+  .tldr-strip {
+    background: var(--gold);
+    color: #000;
+    border-bottom: 2px solid #000;
+  }
+
+  .tldr-inner {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 22px 48px;
     display: flex;
-    gap: 12px;
+    align-items: center;
+    gap: 28px;
     flex-wrap: wrap;
   }
 
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 16px 24px;
-    border-radius: 4px;
+  .tldr-label {
     font-family: 'Archivo Black', sans-serif;
-    font-size: 13px;
-    letter-spacing: 2px;
+    font-size: 14px;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    text-decoration: none;
-    transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
-    cursor: pointer;
-    border: none;
-    white-space: nowrap;
+    flex-shrink: 0;
+    border-right: 2px solid #000;
+    padding-right: 28px;
   }
 
-  .btn-primary {
-    background: var(--green);
-    color: #051A0E;
-  }
-
-  .btn-primary:hover {
-    background: var(--green-bright);
-    transform: translate(-2px, -2px);
-    box-shadow: 4px 4px 0 var(--green-deep);
-  }
-
-  .btn-ghost {
-    background: transparent;
-    color: var(--text);
-    border: 2px solid var(--text);
-  }
-
-  .btn-ghost:hover {
-    background: var(--text);
-    color: var(--bg);
-  }
-
-  .btn-arrow {
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 700;
+  .tldr-text {
+    font-family: 'Archivo', sans-serif;
     font-size: 16px;
+    font-weight: 700;
+    color: #000;
+    flex: 1;
+    min-width: 280px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
 
-  /* ===== MATCH CARD (hero visual) ===== */
-  .match-card-wrap {
+  .tldr-text b {
+    background: #000;
+    color: var(--gold);
+    padding: 2px 8px;
+    margin: 0 2px;
+    font-family: 'Archivo Black', sans-serif;
+  }
+
+  /* STEPS — magazine spread */
+  .steps {
+    max-width: 1500px;
+    margin: 0 auto;
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid var(--border);
+    min-height: 540px;
+  }
+
+  .step.reverse .step-content { order: 2; border-right: none; border-left: 1px solid var(--border); }
+  .step.reverse .step-visual { order: 1; }
+
+  .step-content {
+    padding: 80px 60px;
+    border-right: 1px solid var(--border);
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    position: relative;
-    min-height: 520px;
   }
 
-  .match-card-wrap::before {
-    content: '';
-    position: absolute;
-    inset: -40px;
-    background: radial-gradient(ellipse 70% 60% at center, rgba(250, 204, 21, 0.13) 0%, transparent 60%);
-    filter: blur(50px);
-    z-index: 0;
-  }
-
-  .match-card {
-    background: var(--surface);
-    border: 1px solid var(--border-strong);
-    border-radius: 14px;
-    padding: 28px;
-    width: 100%;
-    max-width: 440px;
-    position: relative;
-    z-index: 1;
-    transform: rotate(-2.5deg);
-    box-shadow:
-      0 30px 80px rgba(0, 0, 0, 0.5),
-      0 0 0 1px rgba(255, 255, 255, 0.05);
-    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-
-  .match-card:hover {
-    transform: rotate(0deg) scale(1.02);
-  }
-
-  .match-card-header {
+  .step-marker {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding-bottom: 16px;
-    border-bottom: 1px dashed var(--border-strong);
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .step-marker-num {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 120px;
+    line-height: 0.85;
+    color: var(--gold);
+    letter-spacing: -0.06em;
+  }
+
+  .step-marker-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    border-left: 2px solid var(--gold);
+    padding-left: 14px;
+  }
+
+  .step-title {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(40px, 4.5vw, 64px);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
     margin-bottom: 24px;
   }
 
-  .match-card-round {
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 11px;
-    letter-spacing: 2px;
-    color: var(--gold);
-    text-transform: uppercase;
-  }
+  .step-title .accent { color: var(--gold); }
 
-  .match-card-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
+  .step-desc {
     color: var(--text-muted);
-    letter-spacing: 1px;
-  }
-
-  .match-card-teams {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 28px;
-  }
-
-  .team {
-    text-align: center;
-  }
-
-  .team-flag {
-    width: 64px;
-    height: 64px;
-    border-radius: 12px;
-    margin: 0 auto 10px;
-    overflow: hidden;
-  }
-
-  .team-flag.fra {
-    background: linear-gradient(to right, #002654 0%, #002654 33.33%, #FFFFFF 33.33%, #FFFFFF 66.67%, #ED2939 66.67%, #ED2939 100%);
-  }
-
-  .team-flag.ger {
-    background: linear-gradient(to bottom, #000000 0%, #000000 33.33%, #DD0000 33.33%, #DD0000 66.67%, #FFCE00 66.67%, #FFCE00 100%);
-  }
-
-  .team-name {
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 13px;
-    letter-spacing: 1.5px;
-    color: var(--text);
-    text-transform: uppercase;
-  }
-
-  .vs-divider {
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 28px;
-    color: var(--text-dim);
-    letter-spacing: 1px;
-  }
-
-  .pick-row {
-    margin-bottom: 14px;
-  }
-
-  .pick-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
+    font-size: 16px;
+    line-height: 1.65;
+    margin-bottom: 18px;
+    max-width: 460px;
     font-weight: 500;
-    color: var(--text-muted);
+  }
+
+  .step-desc b {
+    color: var(--text);
+    font-weight: 700;
+  }
+
+  .step-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+    padding: 8px 14px;
+    background: rgba(74, 222, 128, 0.08);
+    border: 1px solid rgba(74, 222, 128, 0.3);
+    border-radius: 4px;
+    color: var(--green);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    margin-bottom: 6px;
+    align-self: flex-start;
+  }
+
+  .step-pill.gold {
+    background: rgba(250, 204, 21, 0.08);
+    border-color: rgba(250, 204, 21, 0.35);
+    color: var(--gold);
+  }
+
+  /* VISUAL panels */
+  .step-visual {
+    padding: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--surface) 0%, var(--bg) 100%);
+  }
+
+  .step-visual::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+  }
+
+  /* Step 1 — Sign in card */
+  .signin-card {
+    background: var(--bg);
+    border: 1px solid var(--border-strong);
+    border-radius: 14px;
+    padding: 32px 24px;
+    width: 100%;
+    max-width: 320px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  }
+
+  .signin-stamp {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    background: var(--green);
+    color: #000;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transform: rotate(8deg);
+    text-transform: uppercase;
+  }
+
+  .signin-logo {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 16px;
+    display: block;
+  }
+
+  .signin-name {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-align: center;
+    color: var(--text);
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+
+  .signin-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    font-family: 'Archivo', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  .signin-btn.light { background: #F2F2EE; color: #0E1117; }
+  .signin-btn.dark { background: #1B2230; color: #F2F2EE; }
+  .signin-btn.email { color: var(--text-muted); text-align: center; background: transparent; font-size: 11px; padding: 8px; }
+
+  /* Step 2 — Group card stack */
+  .group-stack {
+    width: 100%;
+    max-width: 380px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .group-card {
+    background: var(--bg);
+    border: 1px solid var(--border-strong);
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
   }
 
-  .pick-pts {
+  .group-card-inner {
+    flex: 1;
+  }
+
+  .group-name {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    color: var(--text);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+
+  .group-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .group-rank {
+    background: rgba(74, 222, 128, 0.1);
+    color: var(--green);
+    border: 1px solid rgba(74, 222, 128, 0.3);
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+  }
+
+  .group-rank.gold {
+    background: rgba(250, 204, 21, 0.1);
+    color: var(--gold);
+    border-color: rgba(250, 204, 21, 0.3);
+  }
+
+  .group-cta {
+    background: var(--green);
+    color: #000;
+    border-radius: 8px;
+    padding: 14px;
+    text-align: center;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  /* Step 3 — Match prediction card */
+  .pred-card {
+    background: var(--bg);
+    border: 1px solid var(--border-strong);
+    border-radius: 14px;
+    padding: 24px;
+    width: 100%;
+    max-width: 340px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  }
+
+  .pred-header {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 16px;
+    letter-spacing: 1.5px;
+    text-align: center;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+  }
+
+  .pred-section {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin: 14px 0 8px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .pred-section b {
     color: var(--green);
     font-weight: 700;
   }
 
-  .pick-value {
-    background: rgba(74, 222, 128, 0.08);
-    border: 1px solid rgba(74, 222, 128, 0.35);
+  .pred-row {
+    display: flex;
+    gap: 6px;
+  }
+
+  .pred-pick {
+    flex: 1;
+    padding: 10px;
+    background: var(--surface);
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    text-align: center;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .pred-pick.active {
+    background: rgba(74, 222, 128, 0.1);
+    border-color: var(--green);
+    color: var(--green);
+  }
+
+  .pred-lock {
+    background: var(--gold);
+    color: #000;
+    padding: 12px;
     border-radius: 8px;
-    padding: 11px 14px;
+    text-align: center;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    margin-top: 14px;
+    text-transform: uppercase;
+  }
+
+  /* Step 4 — Leaderboard */
+  .lb-card {
+    background: var(--bg);
+    border: 1px solid var(--border-strong);
+    border-radius: 14px;
+    padding: 24px;
+    width: 100%;
+    max-width: 360px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  }
+
+  .lb-header {
     font-family: 'Archivo Black', sans-serif;
     font-size: 14px;
     letter-spacing: 1.5px;
-    color: var(--green);
     text-transform: uppercase;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .pick-value-check {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-  }
-
-  .match-card-footer {
-    margin-top: 20px;
-    padding-top: 18px;
-    border-top: 1px dashed var(--border-strong);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .match-card-footer-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    color: var(--text-muted);
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-  }
-
-  .match-card-pts {
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 22px;
-    color: var(--gold);
-    letter-spacing: -0.5px;
-  }
-
-  /* Tape stickers on the corners */
-  .match-card-tape {
-    position: absolute;
-    width: 60px;
-    height: 22px;
-    background: rgba(250, 204, 21, 0.6);
-    z-index: 2;
-  }
-
-  .match-card-tape.tl {
-    top: -10px;
-    left: 30px;
-    transform: rotate(-8deg);
-  }
-
-  .match-card-tape.br {
-    bottom: -10px;
-    right: 30px;
-    transform: rotate(7deg);
-  }
-
-  /* ===== STATS STRIP ===== */
-  .stats-strip {
-    background: #000;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    overflow: hidden;
-  }
-
-  .stats-inner {
-    max-width: 1500px;
-    margin: 0 auto;
-    padding: 30px 48px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
-  }
-
-  .stat {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  .stat-num {
-    font-family: 'Archivo Black', sans-serif;
-    font-size: clamp(28px, 4vw, 44px);
+    margin-bottom: 16px;
     color: var(--text);
-    letter-spacing: -0.04em;
-    line-height: 1;
+    padding-bottom: 14px;
+    border-bottom: 1px dashed var(--border-strong);
   }
 
-  .stat-num.gold { color: var(--gold); }
-  .stat-num.green { color: var(--green); }
+  .lb-row {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    background: var(--surface);
+    border-radius: 8px;
+    margin-bottom: 6px;
+    gap: 12px;
+  }
 
-  .stat-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
+  .lb-row.you {
+    background: rgba(74, 222, 128, 0.1);
+    border: 1px solid rgba(74, 222, 128, 0.3);
+  }
+
+  .lb-rank {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 13px;
     color: var(--text-muted);
-    letter-spacing: 1.5px;
+    width: 18px;
+  }
+
+  .lb-name {
+    flex: 1;
+    font-family: 'Archivo', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
     text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .lb-row.you .lb-name { color: var(--green); }
+
+  .lb-pts {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .lb-row.you .lb-pts { color: var(--green); }
+
+  /* Step 5 — Crown */
+  .crown-card {
+    background: var(--bg);
+    border: 1px solid var(--border-strong);
+    border-radius: 14px;
+    padding: 28px 24px;
+    width: 100%;
+    max-width: 340px;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  }
+
+  .crown-card::before {
+    content: '👑';
+    position: absolute;
+    top: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 44px;
+  }
+
+  .crown-title {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 14px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 14px 0 20px;
+  }
+
+  .podium {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    margin: 16px 0;
+  }
+
+  .pod {
+    flex: 1;
+    border-radius: 6px;
+    padding: 12px 6px;
+    text-align: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+
+  .pod.first {
+    height: 110px;
+    background: rgba(250, 204, 21, 0.12);
+    border-color: var(--gold);
+  }
+
+  .pod.second { height: 80px; }
+  .pod.third { height: 60px; }
+
+  .pod-name {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 12px;
+    color: var(--text);
+    letter-spacing: 1px;
+  }
+
+  .pod.first .pod-name { color: var(--gold); }
+
+  .pod-pts {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-muted);
     margin-top: 6px;
   }
 
-  /* ===== PLAYS SECTION ===== */
-  .plays {
+  .pod.first .pod-pts { color: var(--gold); }
+
+  .reckoning {
+    background: rgba(239, 68, 68, 0.06);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 14px;
+    text-align: left;
+  }
+
+  .reckoning-label {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 10px;
+    color: var(--red);
+    letter-spacing: 1.5px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+  }
+
+  .reckoning-body {
+    font-family: 'Archivo', sans-serif;
+    font-size: 11px;
+    color: var(--text);
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  /* SCORING SHEET */
+  .scoring {
     max-width: 1500px;
     margin: 0 auto;
     padding: 100px 48px;
   }
 
-  .section-head {
+  .scoring-head {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -644,172 +747,54 @@
     gap: 24px;
   }
 
-  .section-eyebrow {
-    font-family: 'JetBrains Mono', monospace;
-    color: var(--gold);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    margin-bottom: 14px;
-  }
-
-  .section-title {
-    font-family: 'Archivo Black', sans-serif;
-    font-size: clamp(40px, 6vw, 80px);
-    line-height: 0.9;
-    letter-spacing: -0.04em;
-    text-transform: uppercase;
-  }
-
-  .section-title .accent { color: var(--gold); }
-
-  .section-aside {
-    color: var(--text-muted);
-    font-size: 14px;
-    max-width: 280px;
-    text-align: right;
-    font-weight: 500;
-  }
-
-  .plays-grid {
+  .scoring-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 0;
-    border: 1px solid var(--border);
+    border: 1px solid var(--border-strong);
     border-radius: 14px;
     overflow: hidden;
   }
 
-  .play {
-    padding: 36px 32px;
+  .score-row {
     background: var(--surface);
-    position: relative;
+    padding: 22px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
     border-right: 1px solid var(--border);
-    transition: background 0.3s;
+    gap: 24px;
+    transition: background 0.2s;
   }
 
-  .play:last-child { border-right: none; }
-  .play:hover { background: var(--surface-2); }
+  .score-row:nth-child(2n) { border-right: none; }
+  .score-row:hover { background: var(--surface-2); }
 
-  .play-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 28px;
-  }
-
-  .play-tag {
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 12px;
-    letter-spacing: 2.5px;
-    color: var(--gold);
-    text-transform: uppercase;
-  }
-
-  .play-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--text-dim);
-    letter-spacing: 1px;
-  }
-
-  .play-title {
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 56px;
-    line-height: 0.95;
-    letter-spacing: -0.04em;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    color: var(--text);
-  }
-
-  .play.gold .play-title { color: var(--gold); }
-
-  .play-desc {
-    color: var(--text-muted);
-    font-size: 15px;
-    line-height: 1.6;
-    font-weight: 500;
-    margin-bottom: 24px;
-  }
-
-  .play-detail {
-    border-top: 1px dashed var(--border);
-    padding-top: 18px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--text-muted);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-
-  .play-detail b {
-    color: var(--green);
-    font-weight: 700;
-  }
-
-  .play.gold .play-detail b {
-    color: var(--gold);
-  }
-
-  /* ===== SCORING BREAKDOWN ===== */
-  .scoring-section {
-    max-width: 1500px;
-    margin: 0 auto;
-    padding: 100px 48px;
-  }
-
-  .scoring-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-  }
-
-  .score-tile {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 24px 22px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: border-color 0.2s, background 0.2s;
-  }
-
-  .score-tile:hover {
-    border-color: var(--border-strong);
-    background: var(--surface-2);
-  }
-
-  .score-tile-label {
+  .score-label {
     font-family: 'Archivo', sans-serif;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
     color: var(--text);
-    letter-spacing: 0;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
     line-height: 1.3;
     flex: 1;
-    padding-right: 16px;
   }
 
-  .score-tile-val {
+  .score-pts {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 22px;
+    font-size: 28px;
     font-weight: 700;
     color: var(--green);
-    letter-spacing: -0.5px;
+    letter-spacing: -1px;
     white-space: nowrap;
   }
 
-  .score-tile-val.gold { color: var(--gold); }
-  .score-tile-val.red { color: var(--red); }
+  .score-pts.gold { color: var(--gold); }
+  .score-pts.red { color: var(--red); }
 
-  /* ===== CTA BANNER ===== */
+  /* CTA BANNER */
   .cta-banner-wrap {
     max-width: 1500px;
     margin: 0 auto;
@@ -817,8 +802,8 @@
   }
 
   .cta-banner {
-    background: linear-gradient(120deg, var(--gold) 0%, var(--gold-deep) 100%);
-    color: #0A0C10;
+    background: var(--text);
+    color: #000;
     border-radius: 18px;
     padding: 80px 56px;
     text-align: center;
@@ -827,13 +812,13 @@
   }
 
   .cta-banner::before {
-    content: 'JUNE 11';
+    content: 'KICK • OFF';
     position: absolute;
-    top: -40px;
-    left: -20px;
+    top: -30px;
+    right: -40px;
     font-family: 'Archivo Black', sans-serif;
-    font-size: 280px;
-    color: rgba(0, 0, 0, 0.06);
+    font-size: 180px;
+    color: rgba(0, 0, 0, 0.05);
     letter-spacing: -0.04em;
     line-height: 1;
     pointer-events: none;
@@ -845,7 +830,7 @@
     gap: 10px;
     padding: 6px 14px;
     background: #000;
-    color: var(--gold);
+    color: var(--green);
     border-radius: 4px;
     font-family: 'Archivo Black', sans-serif;
     font-size: 11px;
@@ -870,7 +855,7 @@
 
   .cta-sub {
     color: #1a1a1a;
-    font-size: 18px;
+    font-size: 17px;
     margin-bottom: 36px;
     max-width: 540px;
     margin-left: auto;
@@ -878,25 +863,63 @@
     font-weight: 600;
     position: relative;
     z-index: 1;
+    line-height: 1.5;
   }
 
-  .cta-banner .cta-row {
+  .cta-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
     justify-content: center;
     position: relative;
     z-index: 1;
   }
 
-  .cta-banner .btn-primary {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 24px;
+    border-radius: 4px;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.2s, background 0.2s;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary {
     background: #000;
     color: var(--gold);
   }
 
-  .cta-banner .btn-primary:hover {
+  .btn-primary:hover {
     background: #1a1a1a;
+    transform: translate(-2px, -2px);
     box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
   }
 
-  /* ===== FOOTER ===== */
+  .btn-ghost {
+    background: transparent;
+    color: #000;
+    border: 2px solid #000;
+  }
+
+  .btn-ghost:hover {
+    background: #000;
+    color: var(--text);
+  }
+
+  .btn-arrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  /* FOOTER */
   .footer {
     border-top: 1px solid var(--border);
     background: #000;
@@ -948,94 +971,54 @@
 
   .footer-links a:hover { color: var(--gold); }
 
-  /* ===== RESPONSIVE ===== */
+  /* RESPONSIVE */
   @media (max-width: 1024px) {
-    .hero { grid-template-columns: 1fr; gap: 60px; padding: 40px 24px 80px; }
     .nav { padding: 18px 24px; }
     .nav-links { gap: 24px; }
     .nav-logo span { display: none; }
 
-    .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 32px 24px; padding: 30px 24px; }
+    .page-hero {
+      padding: 50px 24px 40px;
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
 
-    .plays { padding: 60px 24px; }
-    .plays-grid { grid-template-columns: 1fr; }
-    .play { border-right: none; border-bottom: 1px solid var(--border); }
-    .play:last-child { border-bottom: none; }
-    .play-title { font-size: 44px; }
+    .tldr-inner { padding: 22px 24px; }
+    .tldr-label { padding-right: 18px; }
 
-    .scoring-section { padding: 60px 24px; }
+    .step,
+    .step.reverse {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+    .step.reverse .step-content { order: 1; border-left: none; }
+    .step.reverse .step-visual { order: 2; }
+    .step-content { padding: 50px 24px; border-right: none; }
+    .step-visual { padding: 50px 24px; }
+    .step-marker-num { font-size: 90px; }
+
+    .scoring { padding: 60px 24px; }
     .scoring-grid { grid-template-columns: 1fr; }
+    .score-row { border-right: none; }
 
     .cta-banner-wrap { padding: 40px 24px 80px; }
     .cta-banner { padding: 60px 28px; }
-    .cta-banner::before { font-size: 160px; }
+    .cta-banner::before { font-size: 110px; }
 
-    .section-head { flex-direction: column; align-items: flex-start; }
-    .section-aside { text-align: left; max-width: 100%; }
+    .scoring-head { flex-direction: column; align-items: flex-start; }
 
     .footer-inner { padding: 30px 24px; flex-direction: column; text-align: center; }
-
-    .match-card { transform: rotate(-1.5deg); }
   }
 
   @media (max-width: 600px) {
-    .ticker-label { font-size: 10px; padding: 0 10px; }
-    .ticker-item { padding: 0 16px; font-size: 11px; }
-
-    .hero-title { font-size: 56px; }
-    .hero-sub-banner { font-size: 12px; padding: 7px 14px; }
-
-    .match-card { padding: 20px; }
-    .team-flag { width: 52px; height: 52px; font-size: 18px; }
-    .team-name { font-size: 11px; }
+    .page-title { font-size: 64px; }
+    .step-title { font-size: 36px; }
+    .score-label { font-size: 13px; }
+    .score-pts { font-size: 22px; }
   }
-
-  /* Reveal animations */
-  @keyframes slideUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes slideRight {
-    from { opacity: 0; transform: translateX(40px) rotate(-2.5deg); }
-    to { opacity: 1; transform: translateX(0) rotate(-2.5deg); }
-  }
-
-  .hero > div > * { animation: slideUp 0.8s ease-out backwards; }
-  .hero > div > *:nth-child(1) { animation-delay: 0.1s; }
-  .hero > div > *:nth-child(2) { animation-delay: 0.2s; }
-  .hero > div > *:nth-child(3) { animation-delay: 0.3s; }
-  .hero > div > *:nth-child(4) { animation-delay: 0.4s; }
-  .hero > div > *:nth-child(5) { animation-delay: 0.5s; }
-
-  .match-card-wrap { animation: slideRight 1s ease-out 0.4s backwards; }
 </style>
 </head>
 <body>
-
-<!-- FIXTURES TICKER -->
-<div class="ticker">
-  <div class="ticker-label">FIXTURES</div>
-  <div class="ticker-track">
-    <div class="ticker-item"><b>MEX vs CAN</b> JUN 11 · 20:00 ET</div>
-    <div class="ticker-item"><b>ARG vs ESP</b> JUN 12 · 15:00 ET</div>
-    <div class="ticker-item"><b>USA vs ENG</b> JUN 13 · 17:00 ET</div>
-    <div class="ticker-item"><b>BRA vs FRA</b> JUN 14 · 18:00 ET</div>
-    <div class="ticker-item"><b>GER vs POR</b> JUN 15 · 14:00 ET</div>
-    <div class="ticker-item"><b>NED vs ITA</b> JUN 16 · 16:00 ET</div>
-    <div class="ticker-item"><b>JPN vs KOR</b> JUN 17 · 13:00 ET</div>
-    <div class="ticker-item"><b>MAR vs CIV</b> JUN 18 · 19:00 ET</div>
-    <!-- duplicate for seamless loop -->
-    <div class="ticker-item"><b>MEX vs CAN</b> JUN 11 · 20:00 ET</div>
-    <div class="ticker-item"><b>ARG vs ESP</b> JUN 12 · 15:00 ET</div>
-    <div class="ticker-item"><b>USA vs ENG</b> JUN 13 · 17:00 ET</div>
-    <div class="ticker-item"><b>BRA vs FRA</b> JUN 14 · 18:00 ET</div>
-    <div class="ticker-item"><b>GER vs POR</b> JUN 15 · 14:00 ET</div>
-    <div class="ticker-item"><b>NED vs ITA</b> JUN 16 · 16:00 ET</div>
-    <div class="ticker-item"><b>JPN vs KOR</b> JUN 17 · 13:00 ET</div>
-    <div class="ticker-item"><b>MAR vs CIV</b> JUN 18 · 19:00 ET</div>
-  </div>
-</div>
 
 <!-- NAV -->
 <nav class="nav">
@@ -1044,229 +1027,286 @@
     <span>WHAT'S YOUR PICK<span class="q">?</span></span>
   </a>
   <ul class="nav-links">
-    <li><a href="/howtoplay">HOW TO PLAY</a></li>
+    <li><a href="/howtoplay" class="active">HOW TO PLAY</a></li>
     <li><a href="/faq">FAQ</a></li>
     <li><a href="/privacypolicy">PRIVACY</a></li>
-    <li><a class="nav-download" href="https://github.com/cpguirguis/Whats-Your-Pick/releases/download/v1.0.0/whatsyourpick.apk">↓&nbsp;Download&nbsp;app</a></li>
   </ul>
 </nav>
 
 <main>
 
   <!-- HERO -->
-  <section class="hero">
-    <div>
-      <div class="hero-tag">
-        <span class="hero-tag-dot"></span>
-        <span>BUILT FOR THE 2026 TOURNAMENT</span>
+  <section class="page-hero">
+    <div class="hero-left">
+      <div class="page-eyebrow">THE PLAYBOOK · 60-SECOND READ</div>
+      <h1 class="page-title">HOW TO<br><span class="accent">PLAY.</span></h1>
+    </div>
+    <p class="page-sub">Five plays. Once you've run them, the World Cup becomes <b>the most fun group chat of the summer.</b></p>
+  </section>
+
+  <!-- TLDR STRIP -->
+  <div class="tldr-strip">
+    <div class="tldr-inner">
+      <div class="tldr-label">TL;DR</div>
+      <div class="tldr-text">
+        <b>SIGN IN.</b> <b>JOIN A CREW.</b> <b>MAKE PICKS BEFORE KICKOFF.</b> <b>EARN POINTS.</b> <b>CROWN THE PUNDIT.</b>
       </div>
-      <h1 class="hero-title">
-        CALL THE<br>
-        <span class="accent">TOURNAMENT</span><br>
-        WITH YOUR CREW.
-      </h1>
-      <div class="hero-sub-banner">FREE • SOCIAL • <span>NO BETTING</span></div>
-      <p class="hero-subtitle">
-        Make your picks before kickoff. Earn points for every right call. <b>Whoever calls it best gets crowned the Pundit.</b> No money. No betting. Just bragging rights with your friends.
+    </div>
+  </div>
+
+  <!-- STEPS -->
+  <section class="steps">
+
+    <!-- STEP 1 -->
+    <div class="step">
+      <div class="step-content">
+        <div class="step-marker">
+          <div class="step-marker-num">01</div>
+          <div class="step-marker-label">SIGN IN<br>ONE TAP</div>
+        </div>
+        <h2 class="step-title">GET IN.</h2>
+        <p class="step-desc">Apple, Google, or email. Your name pulls from your account — <b>no forms, no passwords.</b></p>
+        <div class="step-pill">3 OPTIONS · ZERO FRICTION</div>
+      </div>
+      <div class="step-visual">
+        <div class="signin-card">
+          <div class="signin-stamp">3 OPTIONS</div>
+          <img class="signin-logo" src="/assets/wyp-logo.png" alt="WYP">
+          <div class="signin-name">WHAT'S YOUR PICK?</div>
+          <div class="signin-btn light">CONTINUE WITH APPLE</div>
+          <div class="signin-btn dark">CONTINUE WITH GOOGLE</div>
+          <div class="signin-btn email">USE EMAIL INSTEAD</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step reverse">
+      <div class="step-content">
+        <div class="step-marker">
+          <div class="step-marker-num">02</div>
+          <div class="step-marker-label">JOIN A CREW<br>PRIVATE</div>
+        </div>
+        <h2 class="step-title">JOIN<br>YOUR CREW.</h2>
+        <p class="step-desc">Create a group and share the join code, or punch in a friend's code to join theirs. Groups are <b>private</b> — only people with the code get in.</p>
+        <p class="step-desc">Join as many crews as you want. Office crew, fantasy league, family. Same picks, different leaderboards.</p>
+        <div class="step-pill">INVITE-ONLY · ZERO STRANGERS</div>
+      </div>
+      <div class="step-visual">
+        <div class="group-stack">
+          <div class="group-card">
+            <div class="group-card-inner">
+              <div class="group-name">THE OFFICE CREW</div>
+              <div class="group-meta">WC '26 · 8 MEMBERS</div>
+            </div>
+            <div class="group-rank">#3</div>
+          </div>
+          <div class="group-card">
+            <div class="group-card-inner">
+              <div class="group-name">SUNDAY LEAGUE</div>
+              <div class="group-meta">WC '26 · 12 MEMBERS</div>
+            </div>
+            <div class="group-rank gold">#1</div>
+          </div>
+          <div class="group-cta">+ CREATE GROUP</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step">
+      <div class="step-content">
+        <div class="step-marker">
+          <div class="step-marker-num">03</div>
+          <div class="step-marker-label">MAKE PICKS<br>BEFORE KICKOFF</div>
+        </div>
+        <h2 class="step-title">CALL EVERY<br>MATCH.</h2>
+        <p class="step-desc">Three layers of calls. <b>Group stage:</b> who advances. <b>Knockouts:</b> winner, first scorer, how it ends (90', extra time, pens). <b>Tournament:</b> golden boot and the champion.</p>
+        <p class="step-desc">Picks auto-save. Once the match kicks off, they're sealed — <b>no last-second hindsight.</b></p>
+        <div class="step-pill">AUTO-SAVES · NO LOCK BUTTON</div>
+      </div>
+      <div class="step-visual">
+        <div class="pred-card">
+          <div class="pred-header">FRA VS GER</div>
+          <div class="pred-section"><span>WINNER</span><b>+3</b></div>
+          <div class="pred-row">
+            <div class="pred-pick active">FRANCE</div>
+            <div class="pred-pick">GERMANY</div>
+          </div>
+          <div class="pred-section"><span>SCORER · FRA</span><b>+2</b></div>
+          <div class="pred-row">
+            <div class="pred-pick active">MBAPPÉ</div>
+            <div class="pred-pick">GRIEZ.</div>
+          </div>
+          <div class="pred-section"><span>SCORER · GER</span><b>+2</b></div>
+          <div class="pred-row">
+            <div class="pred-pick active">WIRTZ</div>
+            <div class="pred-pick">MUSIALA</div>
+          </div>
+          <div class="pred-section"><span>DECIDED BY</span><b>+2</b></div>
+          <div class="pred-row">
+            <div class="pred-pick active">90'</div>
+            <div class="pred-pick">ET</div>
+            <div class="pred-pick">PENS</div>
+          </div>
+          <div class="pred-lock">LOCKED · MAX +14 PTS</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step reverse">
+      <div class="step-content">
+        <div class="step-marker">
+          <div class="step-marker-num">04</div>
+          <div class="step-marker-label">SCORE POINTS<br>POST-WHISTLE</div>
+        </div>
+        <h2 class="step-title">EARN ON<br>EVERY CALL.</h2>
+        <p class="step-desc">Final whistle blows, the app grades your picks automatically. Points hit the leaderboard live.</p>
+        <p class="step-desc">Nail all four core calls in one match and you've <b>swept it</b> — bonus points and a permanent badge on your profile.</p>
+        <div class="step-pill gold">SWEEP = CROWN ↑</div>
+      </div>
+      <div class="step-visual">
+        <div class="lb-card">
+          <div class="lb-header">THE OFFICE CREW · TABLE</div>
+          <div class="lb-row">
+            <div class="lb-rank">1</div>
+            <div class="lb-name">SARAH</div>
+            <div class="lb-pts">+38</div>
+          </div>
+          <div class="lb-row">
+            <div class="lb-rank">2</div>
+            <div class="lb-name">JAMES</div>
+            <div class="lb-pts">+34</div>
+          </div>
+          <div class="lb-row you">
+            <div class="lb-rank">3</div>
+            <div class="lb-name">YOU</div>
+            <div class="lb-pts">+32</div>
+          </div>
+          <div class="lb-row">
+            <div class="lb-rank">4</div>
+            <div class="lb-name">MIKE</div>
+            <div class="lb-pts">+30</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="step">
+      <div class="step-content">
+        <div class="step-marker">
+          <div class="step-marker-num">05</div>
+          <div class="step-marker-label">FINAL WHISTLE<br>WORLD CUP</div>
+        </div>
+        <h2 class="step-title">CROWN THE<br><span class="accent">PUNDIT.</span></h2>
+        <p class="step-desc">When the final ends, whoever sits on top of the crew's table gets crowned. Permanent badge. Group-wide notification. <b>Four years of bragging rights.</b></p>
+        <p class="step-desc">Whoever finished last? They might owe the crew a coffee — or whatever stake your group agreed on in House Rules.</p>
+        <div class="step-pill gold">FINAL · CHAMPION'S TROPHY</div>
+      </div>
+      <div class="step-visual">
+        <div class="crown-card">
+          <div class="crown-title">SARAH IS THE PUNDIT</div>
+          <div class="podium">
+            <div class="pod second">
+              <div class="pod-name">JM</div>
+              <div class="pod-pts">2ND</div>
+            </div>
+            <div class="pod first">
+              <div class="pod-name">SR</div>
+              <div class="pod-pts">1ST</div>
+            </div>
+            <div class="pod third">
+              <div class="pod-name">CG</div>
+              <div class="pod-pts">3RD</div>
+            </div>
+          </div>
+          <div class="reckoning">
+            <div class="reckoning-label">THE RECKONING</div>
+            <div class="reckoning-body">PAUL FINISHED LAST · OWES THE CREW ONE KARAOKE NIGHT</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- SCORING SHEET -->
+  <section class="scoring">
+    <div class="scoring-head">
+      <div>
+        <div class="page-eyebrow">POINTS SHEET · NO BLACK BOX</div>
+        <h2 class="step-title" style="font-size: clamp(40px, 6vw, 80px);">EVERY CALL<br>HAS A <span class="accent">PRICE.</span></h2>
+      </div>
+      <p style="color: var(--text-muted); font-size: 14px; max-width: 280px; text-align: right; font-weight: 500;">
+        Transparent scoring. You know exactly what each pick is worth before you lock it in.
       </p>
-      <div class="cta-row">
-        <a href="/howtoplay" class="btn btn-primary">HOW IT WORKS <span class="btn-arrow">→</span></a>
-        <a href="#plays" class="btn btn-ghost">SEE THE GAME</a>
-      </div>
-    </div>
-
-    <div class="match-card-wrap">
-      <div class="match-card">
-        <div class="match-card-tape tl"></div>
-        <div class="match-card-tape br"></div>
-
-        <div class="match-card-header">
-          <div class="match-card-round">ROUND OF 16 · MATCH 7</div>
-          <div class="match-card-meta">22.06 · 15:00</div>
-        </div>
-
-        <div class="match-card-teams">
-          <div class="team">
-            <div class="team-flag fra"></div>
-            <div class="team-name">FRANCE</div>
-          </div>
-          <div class="vs-divider">VS</div>
-          <div class="team">
-            <div class="team-flag ger"></div>
-            <div class="team-name">GERMANY</div>
-          </div>
-        </div>
-
-        <div class="pick-row">
-          <div class="pick-label"><span>WINNER</span><span class="pick-pts">+3</span></div>
-          <div class="pick-value"><span>FRANCE</span><span class="pick-value-check">✓</span></div>
-        </div>
-        <div class="pick-row">
-          <div class="pick-label"><span>SCORER · FRA</span><span class="pick-pts">+2</span></div>
-          <div class="pick-value"><span>MBAPPÉ</span><span class="pick-value-check">✓</span></div>
-        </div>
-        <div class="pick-row">
-          <div class="pick-label"><span>SCORER · GER</span><span class="pick-pts">+2</span></div>
-          <div class="pick-value"><span>WIRTZ</span><span class="pick-value-check">✓</span></div>
-        </div>
-        <div class="pick-row">
-          <div class="pick-label"><span>DECIDED BY</span><span class="pick-pts">+2</span></div>
-          <div class="pick-value"><span>90 MIN</span><span class="pick-value-check">✓</span></div>
-        </div>
-
-        <div class="match-card-footer">
-          <div class="match-card-footer-label">MAX TOTAL</div>
-          <div class="match-card-pts">+14 PTS</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STATS STRIP -->
-  <section class="stats-strip">
-    <div class="stats-inner">
-      <div class="stat">
-        <div class="stat-num">104</div>
-        <div class="stat-label">MATCHES TO CALL</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num gold">48</div>
-        <div class="stat-label">TEAMS · 12 GROUPS</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num green">∞</div>
-        <div class="stat-label">CREWS YOU CAN JOIN</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PLAYS -->
-  <section class="plays" id="plays">
-    <div class="section-head">
-      <div>
-        <div class="section-eyebrow">THE GAME · 3 PLAYS</div>
-        <h2 class="section-title">PICK.<br>SCORE.<br><span class="accent">CROWN.</span></h2>
-      </div>
-      <div class="section-aside">
-        Three things to do. The rest is your friends roasting each other in the group chat.
-      </div>
-    </div>
-
-    <div class="plays-grid">
-
-      <div class="play">
-        <div class="play-header">
-          <div class="play-tag">PLAY 01</div>
-          <div class="play-num">[ PRE-MATCH ]</div>
-        </div>
-        <h3 class="play-title">PICK</h3>
-        <p class="play-desc">Group qualifiers, knockout winners, first scorers, how the match ends, and who lifts the trophy. Lock in before kickoff — no hindsight allowed.</p>
-        <div class="play-detail">
-          <span>UP TO</span>
-          <b>+14 PTS / MATCH</b>
-        </div>
-      </div>
-
-      <div class="play">
-        <div class="play-header">
-          <div class="play-tag">PLAY 02</div>
-          <div class="play-num">[ POST-WHISTLE ]</div>
-        </div>
-        <h3 class="play-title">SCORE</h3>
-        <p class="play-desc">Every right call lands points. Nail all four core calls in a single match and you've swept it — extra points and a permanent badge on your profile.</p>
-        <div class="play-detail">
-          <span>BONUS</span>
-          <b>SWEEP = +9 PTS</b>
-        </div>
-      </div>
-
-      <div class="play gold">
-        <div class="play-header">
-          <div class="play-tag">PLAY 03</div>
-          <div class="play-num">[ FINAL WHISTLE ]</div>
-        </div>
-        <h3 class="play-title">CROWN</h3>
-        <p class="play-desc">Whoever sits at the top of your crew's table when the final ends gets crowned the Pundit. Permanent badge. Group-wide notification. 4 years of bragging rights.</p>
-        <div class="play-detail">
-          <span>EARN</span>
-          <b>PUNDIT 👑</b>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- SCORING BREAKDOWN -->
-  <section class="scoring-section">
-    <div class="section-head">
-      <div>
-        <div class="section-eyebrow">POINTS BREAKDOWN · NO BLACK BOX</div>
-        <h2 class="section-title">EVERY CALL<br>HAS A <span class="accent">PRICE.</span></h2>
-      </div>
-      <div class="section-aside">
-        Transparent scoring. You know exactly what each pick is worth before you make it.
-      </div>
     </div>
 
     <div class="scoring-grid">
-      <div class="score-tile">
-        <div class="score-tile-label">RIGHT TEAM ADVANCES</div>
-        <div class="score-tile-val">+2</div>
+      <div class="score-row">
+        <div class="score-label">RIGHT TEAM ADVANCES · GROUP STAGE</div>
+        <div class="score-pts">+2</div>
       </div>
-      <div class="score-tile">
-        <div class="score-tile-label">EXACT ORDER · GROUP STAGE</div>
-        <div class="score-tile-val">+1</div>
+      <div class="score-row">
+        <div class="score-label">EXACT ORDER · GROUP STAGE</div>
+        <div class="score-pts">+1</div>
       </div>
-      <div class="score-tile">
-        <div class="score-tile-label">MATCH WINNER · KNOCKOUT</div>
-        <div class="score-tile-val">+3</div>
+      <div class="score-row">
+        <div class="score-label">MATCH WINNER · KNOCKOUT</div>
+        <div class="score-pts">+3</div>
       </div>
-      <div class="score-tile">
-        <div class="score-tile-label">SCORER</div>
-        <div class="score-tile-val">+2</div>
+      <div class="score-row">
+        <div class="score-label">SCORER · KNOCKOUT</div>
+        <div class="score-pts">+2</div>
       </div>
-      <div class="score-tile">
-        <div class="score-tile-label">DECIDED BY · 90' / ET / PENS</div>
-        <div class="score-tile-val">+2</div>
+      <div class="score-row">
+        <div class="score-label">DECIDED BY · 90' / ET / PENS</div>
+        <div class="score-pts">+2</div>
       </div>
-      <div class="score-tile">
-        <div class="score-tile-label">RED CARD CALL · OPT-IN</div>
-        <div class="score-tile-val">+5</div>
+      <div class="score-row">
+        <div class="score-label">RED CARD CALL · OPT-IN</div>
+        <div class="score-pts">+5</div>
       </div>
-      <div class="score-tile">
-        <div class="score-tile-label">RED CARD WRONG · OPT-IN</div>
-        <div class="score-tile-val red">−3</div>
+      <div class="score-row">
+        <div class="score-label">RED CARD WRONG · OPT-IN</div>
+        <div class="score-pts red">−3</div>
       </div>
-      <div class="score-tile">
-        <div class="score-tile-label">TOURNAMENT CHAMPION</div>
-        <div class="score-tile-val gold">+10</div>
+      <div class="score-row">
+        <div class="score-label">TOURNAMENT CHAMPION</div>
+        <div class="score-pts gold">+10</div>
       </div>
-      <div class="score-tile">
-        <div class="score-tile-label">TOP SCORER PICK</div>
-        <div class="score-tile-val gold">+10</div>
+      <div class="score-row">
+        <div class="score-label">GOLDEN BOOT PICK</div>
+        <div class="score-pts gold">+10</div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">SWEEP · 4/4 IN ONE MATCH</div>
+        <div class="score-pts gold">+10</div>
       </div>
     </div>
   </section>
 
-  <!-- CTA BANNER -->
+  <!-- CTA -->
   <section class="cta-banner-wrap">
     <div class="cta-banner">
-      <div class="cta-pill">⚽ KICKOFF · 11 JUNE 2026</div>
-      <h2 class="cta-title">GET YOUR<br>CREW READY.</h2>
-      <p class="cta-sub">The world's biggest tournament is coming. Don't watch it alone — call it together with your crew.</p>
+      <div class="cta-pill">⚽ READY · LET'S GO</div>
+      <h2 class="cta-title">YOU KNOW<br>THE PLAYS.</h2>
+      <p class="cta-sub">Round up your crew. Make your calls. May the best Pundit win.</p>
       <div class="cta-row">
-        <a href="/howtoplay" class="btn btn-primary">LEARN THE GAME <span class="btn-arrow">→</span></a>
+        <a href="/" class="btn btn-ghost">← BACK TO HOME</a>
+        <a href="/privacypolicy" class="btn btn-primary">READ PRIVACY <span class="btn-arrow">→</span></a>
       </div>
     </div>
   </section>
-
 </main>
 
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-left">
       <img src="/assets/wyp-logo.png" alt="WYP">
-      <div class="footer-copy">© 2026 · MADE IN CANADA</div>
+      <div class="footer-copy">© 2026 · MADE IN MISSISSAUGA</div>
     </div>
     <ul class="footer-links">
       <li><a href="/howtoplay">HOW TO PLAY</a></li>
