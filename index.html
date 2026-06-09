@@ -33,7 +33,7 @@
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
 
   body {
     background: var(--bg);
@@ -250,6 +250,8 @@
     position: relative;
   }
 
+  .hero > div { min-width: 0; }
+
   .hero-tag {
     display: inline-flex;
     align-items: center;
@@ -280,7 +282,7 @@
 
   .hero-title {
     font-family: 'Archivo Black', sans-serif;
-    font-size: clamp(64px, 9.5vw, 152px);
+    font-size: clamp(56px, 7.4vw, 118px);
     line-height: 0.85;
     letter-spacing: -0.04em;
     text-transform: uppercase;
@@ -982,7 +984,7 @@
     .ticker-label { font-size: 10px; padding: 0 10px; }
     .ticker-item { padding: 0 16px; font-size: 11px; }
 
-    .hero-title { font-size: 56px; }
+    .hero-title { font-size: clamp(36px, 12vw, 56px); }
     .hero-sub-banner { font-size: 12px; padding: 7px 14px; }
 
     .match-card { padding: 20px; }
