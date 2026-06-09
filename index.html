@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WHAT'S YOUR PICK? — CALL THE WORLD CUP WITH YOUR FRIENDS</title>
-<meta name="description" content="Free social prediction game for the 2026 FIFA World Cup. Make picks, earn points, crown the Pundit.">
-<meta property="og:title" content="WHAT'S YOUR PICK? — Call the World Cup with your friends">
-<meta property="og:description" content="Free social prediction game for the 2026 FIFA World Cup.">
+<title>WHAT'S YOUR PICK? — CALL THE TOURNAMENT WITH YOUR FRIENDS</title>
+<meta name="description" content="Free social prediction game for the 2026 international soccer tournament. Make picks, earn points, crown the Pundit.">
+<meta property="og:title" content="WHAT'S YOUR PICK? — Call the tournament with your friends">
+<meta property="og:description" content="Free social prediction game for the 2026 international soccer tournament.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://whatsyourpick.app">
 <link rel="icon" type="image/png" href="/assets/wyp-logo.png">
@@ -214,6 +214,29 @@
   }
 
   .nav-links a:hover { color: var(--gold); }
+
+  .nav-links a.nav-download {
+    background: var(--green);
+    color: #051A0E;
+    padding: 9px 16px;
+    border-radius: 5px;
+    letter-spacing: 1.2px;
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
+    animation: dlGlow 2.6s ease-in-out infinite;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+  }
+  .nav-links a.nav-download:hover {
+    background: var(--green-bright);
+    color: #051A0E;
+    transform: translateY(-1px);
+  }
+  @keyframes dlGlow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.0); }
+    50% { box-shadow: 0 0 18px 1px rgba(74, 222, 128, 0.45); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .nav-links a.nav-download { animation: none; }
+  }
 
   /* ===== HERO ===== */
   .hero {
@@ -1024,6 +1047,7 @@
     <li><a href="/howtoplay">HOW TO PLAY</a></li>
     <li><a href="/faq">FAQ</a></li>
     <li><a href="/privacypolicy">PRIVACY</a></li>
+    <li><a class="nav-download" href="https://github.com/cpguirguis/Whats-Your-Pick/releases/download/v1.0.0/whatsyourpick.apk">↓&nbsp;Download&nbsp;app</a></li>
   </ul>
 </nav>
 
@@ -1034,11 +1058,11 @@
     <div>
       <div class="hero-tag">
         <span class="hero-tag-dot"></span>
-        <span>BUILT FOR WORLD CUP 2026</span>
+        <span>BUILT FOR THE 2026 TOURNAMENT</span>
       </div>
       <h1 class="hero-title">
         CALL THE<br>
-        <span class="accent">WORLD CUP</span><br>
+        <span class="accent">TOURNAMENT</span><br>
         WITH YOUR CREW.
       </h1>
       <div class="hero-sub-banner">FREE • SOCIAL • <span>NO BETTING</span></div>
@@ -1107,7 +1131,7 @@
       </div>
       <div class="stat">
         <div class="stat-num gold">48</div>
-        <div class="stat-label">TEAMS · 8 GROUPS</div>
+        <div class="stat-label">TEAMS · 12 GROUPS</div>
       </div>
       <div class="stat">
         <div class="stat-num green">∞</div>
@@ -1218,7 +1242,7 @@
         <div class="score-tile-val gold">+10</div>
       </div>
       <div class="score-tile">
-        <div class="score-tile-label">GOLDEN BOOT PICK</div>
+        <div class="score-tile-label">TOP SCORER PICK</div>
         <div class="score-tile-val gold">+10</div>
       </div>
     </div>
